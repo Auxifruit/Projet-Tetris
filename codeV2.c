@@ -5,19 +5,19 @@
 #define TAILLE 10
 
 void init_grid(int tab[TAILLE][TAILLE]); // initialize the grid
-void show_grid(int tab[TAILLE][TAILLE]); // show the grid
-int bloc(int p); // transform int in char
-int difficulty(); // choose the level of difficulty
-void timer(); // a simple timer
-void place(int tab[TAILLE][TAILLE]); // place a bloc
+void show_grid(int tab[TAILLE][TAILLE]); // show the grid in the terminal
+int block(int p); // transform int in char
+int difficulty(); // choose the level of difficulty, it will change the time between the placement of every tetriminos
+void timer(); // a timer that will be useful to the change of diffculty and time to change block position 
+void place(int tab[TAILLE][TAILLE]); // place a block in the table
 char input(); // input a char
-void end_game(int score); // when the game is over
-//void game(); // allow to play the game
+void end_game(int score); // when the game is over, it will stop the game
+//void game(); // allow to start the game
 
 int main() {
 	int tab[TAILLE][TAILLE];
 	int score = 1000;
-	srand(time(NULL));
+	srand(time(NULL)); // the initialisation of the random function
 	init_grid(tab);
 	place(tab);
 	show_grid(tab);
@@ -34,7 +34,7 @@ char input() { // input a char
 	return c;
 }
 
-void place(int tab[TAILLE][TAILLE]) { // place a bloc
+void place(int tab[TAILLE][TAILLE]) { // place a block
 	char c;
 	int mat[1][4] = 
 	{1,
@@ -59,7 +59,7 @@ void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 	}
 }
 
-void show_grid(int tab[TAILLE][TAILLE]) { // show the grid
+void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
 	printf("This is your grid: \n\n");
 	for(int k = 0; k < TAILLE; k++) {
 		printf(" %c", 65 + k);
@@ -67,23 +67,23 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid
 	for(int a = 0; a < TAILLE; a++){
 		for(int b = 0; b < TAILLE; b++){
 			if(b == 0) {
-				printf("\n|%c|", bloc(tab[a][b]));
+				printf("\n|%c|", block(tab[a][b]));
 			}
 			else{
-				printf("%c|", bloc(tab[a][b]));
+				printf("%c|", block(tab[a][b]));
 			}
 		}
 	}
 }
 
-int bloc(int p) { // transform int in char
+int block(int p) { // transform int in char
 	switch(p) {
 		case 0: return(32); break;
 		case 1: return(64); break;
 		default: return(69);
 	}
 }
-int difficulty() { // choose the level of difficulty
+int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
 	int *choice;
 	printf("\n");
 	printf("choose your difficulty: \n");
@@ -98,7 +98,7 @@ int difficulty() { // choose the level of difficulty
 }
 
 
-void timer() { // a simple timer
+void timer() { // the timer
 	time_t start, end;
 	double elapsed;
 	int a;
@@ -139,6 +139,8 @@ void end_game(int score) { // when the game is over
 	printf("\n\nthanks for playing our game! \n");
 	fclose(f);
 }
+
+
 /*
 void game() { // allow to play the game
 	bool gameover = false;
@@ -150,4 +152,18 @@ void game() { // allow to play the game
 	end_game(int score);
 }
 */
-	
+
+
+int verification(tab[][]){ //return the line in which a line is full and if no line is full, return NULL
+        for(int i=0; i<10; i++){ //detect for every line from 0 to 10
+                if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
+                        for(int j=0; i<10;j++){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
+                                if(tab[i][j]!=1){
+                                        j=10;
+                                }
+                        }
+                        return i;
+                }
+        }
+        return NULL; //if there is no line completed by the '1' value, it return NULL 
+}
