@@ -170,3 +170,18 @@ int verification(int tab[][]){ //return the line in which a line is full and if 
         }
         return NULL; //if there is no line completed by the '1' value, it return NULL 
 }
+
+void linedelete(int tab[][], int n){ // after the verification, useful to delete the line and replace by the line on the bottom
+	for(int j=0; j<10; j++){ // delete the line with all the 1's
+		tab[n][j] = 0;
+	}	
+	for(int i=n; i>0; i--){ // replace the line with all the 0's to the line on the bottom
+		for(int k=0; k<10; k++){
+			tab[i][k] = tab[i-1][k];
+		}
+	}
+	for(int l=0;l<10; l++){ // the first line being duplicated, we have to delete it into a line with 0's
+		tab[0][l] = 0;
+	}
+}
+		
