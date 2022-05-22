@@ -14,7 +14,7 @@ char input(); // input a char
 void end_game(int score); // when the game is over, it will stop the game
 //void game(); // allow to start the game
 int verification(int tab[][]); //return the line in which a line is full and if no line is full, return NULL
-
+void linedelete(int tab[][], int n); // after the verification, useful to delete the line and replace by the line on the bottom
 
 
 int main() {
