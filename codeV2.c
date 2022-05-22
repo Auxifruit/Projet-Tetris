@@ -13,6 +13,9 @@ void place(int tab[TAILLE][TAILLE]); // place a block in the table
 char input(); // input a char
 void end_game(int score); // when the game is over, it will stop the game
 //void game(); // allow to start the game
+int verification(int tab[][]); //return the line in which a line is full and if no line is full, return NULL
+
+
 
 int main() {
 	int tab[TAILLE][TAILLE];
@@ -154,7 +157,7 @@ void game() { // allow to play the game
 */
 
 
-int verification(tab[][]){ //return the line in which a line is full and if no line is full, return NULL
+int verification(int tab[][]){ //return the line in which a line is full and if no line is full, return NULL
         for(int i=0; i<10; i++){ //detect for every line from 0 to 10
                 if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
                         for(int j=0; i<10;j++){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
