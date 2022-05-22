@@ -5,14 +5,14 @@
 #define TAILLE 10
 
 typedef struct {
-	char** grid;
+	char** grid; // the tetrimino information
 	int w;
 	int h;
 } Orientation;
 
 typedef struct {
 	Orientation orientation[4];
-} Piece;
+} Piece; 	// this is the tetrimino
 
 void init_grid(int tab[TAILLE][TAILLE]);
 void show_grid(int tab[TAILLE][TAILLE]);
