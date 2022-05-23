@@ -13,15 +13,21 @@ void place(int tab[TAILLE][TAILLE]); // place a block in the table
 char input(); // input a char
 void end_game(int score); // when the game is over, it will stop the game
 //void game(); // allow to start the game
-int verification(int tab[][]); //return the line in which a line is full and if no line is full, return NULL
-void linedelete(int tab[][], int n); // after the verification, useful to delete the line and replace by the line on the bottom
+//int verification(int tab[][]); //return the line in which a line is full and if no line is full, return NULL
+//void linedelete(int tab[][], int n); // after the verification, useful to delete the line and replace by the line on the bottom
 
+typedef struct {
+	char*** type;
+	int orientation;
+	int style;
+} Tetromino;
 
 int main() {
 	int tab[TAILLE][TAILLE];
 	int score = 1000;
 	srand(time(NULL)); // the initialisation of the random function
 	init_grid(tab);
+	show_grid(tab);
 	place(tab);
 	show_grid(tab);
 	//timer();
@@ -30,6 +36,8 @@ int main() {
 	printf("\n");
 	return 0;
 }
+
+
 
 char input() { // input a char
 	char c;
@@ -45,7 +53,7 @@ void place(int tab[TAILLE][TAILLE]) { // place a block
 	1,
 	1};
 	do {
-		printf("on which column you want to place your tetromino ? \n");
+		printf("\non which column you want to place your tetromino ? \n");
 		c = input();
 	} while (c < 65 || c > 74);
 	for(int i = 0; i < 4; i++) {
@@ -63,7 +71,7 @@ void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 }
 
 void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
-	printf("This is your grid: \n\n");
+	printf("This is your grid: \n");
 	for(int k = 0; k < TAILLE; k++) {
 		printf(" %c", 65 + k);
 	}
@@ -150,13 +158,13 @@ void game() { // allow to play the game
 	while(gameover != false;) {
 		places(tab);
 		show_grid(tab);
-		verification(); // voir si une ligne est complète
+		score = score + linedelete(); // voir si une ligne est complète
 	}
 	end_game(int score);
 }
 */
 
-
+/*
 int verification(int tab[][]){ //return the line in which a line is full and if no line is full, return NULL
         for(int i=0; i<10; i++){ //detect for every line from 0 to 10
                 if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
@@ -168,7 +176,7 @@ int verification(int tab[][]){ //return the line in which a line is full and if 
                         return i;
                 }
         }
-        return NULL; //if there is no line completed by the '1' value, it return NULL 
+        return 20; //if there is no line completed by the '1' value, it return NULL 
 }
 
 void linedelete(int tab[][], int n){ // after the verification, useful to delete the line and replace by the line on the bottom
@@ -184,4 +192,4 @@ void linedelete(int tab[][], int n){ // after the verification, useful to delete
 		tab[0][l] = 0;
 	}
 }
-		
+*/
