@@ -1,36 +1,74 @@
+/*
+Moutsss
+Auxifruit
+
+2 contributors
+@Tomalgmt@Auxifruit
+
+187 lines (169 sloc)  4.85 KB
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
 #define TAILLE 10
 
-typedef struct {
-	char** grid; // the tetrimino information
-	int w;
-	int h;
-} Orientation;
-
-typedef struct {
-	Orientation orientation[4];
-} Piece; 	// this is the tetrimino
-
-void init_grid(int tab[TAILLE][TAILLE]);
-void show_grid(int tab[TAILLE][TAILLE]);
-int bloc(int p);
-int difficulty();
-void timer();
+void init_grid(int tab[TAILLE][TAILLE]); // initialize the grid
+void show_grid(int tab[TAILLE][TAILLE]); // show the grid in the terminal
+int block(int p); // transform int in char
+int difficulty(); // choose the level of difficulty, it will change the time between the placement of every tetriminos
+void timer(); // a timer that will be useful to the change of diffculty and time to change block position 
+void place(int tab[TAILLE][TAILLE]); // place a block in the table
+char input(); // input a char
+void end_game(int score); // when the game is over, it will stop the game
+//void game(); // allow to start the game
+int verification(int tab[TAILLE][TAILLE]); //return the line in which a line is full and if no line is full, return NULL
+void linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verification, useful to delete the line and replace by the line on the bottom
+void show_block
 
 int main() {
 	int tab[TAILLE][TAILLE];
-	srand(time(NULL));
+	int score = 1000;
+	srand(time(NULL)); // the initialisation of the random function
 	init_grid(tab);
+	place(tab);
 	show_grid(tab);
 	//timer();
+	//game();
+	end_game(score);
 	printf("\n");
 	return 0;
 }
 
-void init_grid(int tab[TAILLE][TAILLE]) {
+char input() { // input a char
+	char c;
+	while (((c=getchar()) == '\n'));
+	return c;
+}
+
+void place(int tab[TAILLE][TAILLE]) { // place a block
+	char c;
+	int mat[1][4] = 
+	{1,
+	1,
+	1,
+	1};
+	do {
+		printf("on which column you want to place your tetromino ? \n");
+		c = input();
+		if(c<65 || c>74){
+			printf("\n%c isn't a valid column. There are 10 column from A to J. Now, ", c);
+		}
+	} while (c < 65 || c > 74);
+	for(int i = 0; i < 4; i++) {
+		printf("%d \n", mat[0][i]);
+		tab[TAILLE -1 - i][(int)(c-65)] = mat[0][i];
+	}
+}
+	
+void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 	for(int i = 0; i < TAILLE; i++){
 		for(int j = 0; j < TAILLE; j++) {
 			tab[i][j] = 0;
@@ -38,7 +76,7 @@ void init_grid(int tab[TAILLE][TAILLE]) {
 	}
 }
 
-void show_grid(int tab[TAILLE][TAILLE]) {
+void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
 	printf("This is your grid: \n\n");
 	for(int k = 0; k < TAILLE; k++) {
 		printf(" %c", 65 + k);
@@ -46,23 +84,23 @@ void show_grid(int tab[TAILLE][TAILLE]) {
 	for(int a = 0; a < TAILLE; a++){
 		for(int b = 0; b < TAILLE; b++){
 			if(b == 0) {
-				printf("\n|%c|", bloc(tab[a][b]));
+				printf("\n|%c|", block(tab[a][b]));
 			}
 			else{
-				printf("%c|", bloc(tab[a][b]));
+				printf("%c|", block(tab[a][b]));
 			}
 		}
 	}
 }
 
-int bloc(int p) {
+int block(int p) { // transform int in char
 	switch(p) {
 		case 0: return(32); break;
 		case 1: return(64); break;
 		default: return(69);
 	}
 }
-int difficulty() {
+int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
 	int *choice;
 	printf("\n");
 	printf("choose your difficulty: \n");
@@ -77,7 +115,7 @@ int difficulty() {
 }
 
 
-void timer() {
+void timer() { // the timer
 	time_t start, end;
 	double elapsed;
 	int a;
@@ -95,3 +133,80 @@ void timer() {
 	}
 	printf("\nEND OF TIMER! \n");
 }
+
+void end_game(int score) { // when the game is over
+	FILE* f = NULL;
+	char nom[256];
+	printf("\n\nGAME OVER ! \n");
+	f = fopen("HIGH_SCORE.txt","r+");
+	if(f == NULL) {
+		printf("opening file error \n");
+		exit(1);
+	}
+	printf("\nenter your name: ");
+	scanf("%s", &nom);
+	fseek(f, 0, SEEK_END);
+	fprintf(f, "\nname: %s / score: %d",nom, score);
+	rewind(f);
+	int c = EOF + 1;
+	while(c != EOF) {
+		printf("%c",c);
+		c = fgetc(f);
+	}
+	printf("\n\nthanks for playing our game! \n");
+	fclose(f);
+}
+
+
+/*
+void game() { // allow to play the game
+	bool gameover = false;
+	while(gameover != false;) {
+		places(tab);
+		show_grid(tab);
+		verification(); // voir si une ligne est complète
+	}
+	end_game(int score);
+}
+*/
+
+
+int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
+	int n[TAILLE];
+        for(int i=0; i<TAILLE; i++){ //detect for every line from 0 to 10
+		if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
+			for(int j=0; j<TAILLE;j++){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
+				if(tab[i][j]!=1){
+					j=20; 
+					n[i]=20; //if there is no line completed by the '1' value, it add 20 to the table n so the delete line will detect that no line is full 
+                    	        }
+                   	}
+                   	if(j!=20){
+                   		n[i] = i; // complete the table n if the verification is done on the i line
+                   	}
+        	}  
+	}
+	return n;
+}
+
+void linedelete(int tab[TAILLE][TAILLE], int n[], int score){ // after the verification, useful to delete the line and replace by the line on the bottom
+	int count = 0;
+	for(int m = 0; m<10; m++){
+		if(n[m]!=20){
+			for(int j=0; j<10; j++){ // delete the line with all the 1's
+				tab[m][j] = 0;
+			}															// il faut supprimer la plus petite ligne du tableau et refair eavec la ligne d'apres
+			for(int i=m; i>0; i--){ // replace the line with all the 0's to the line on the bottom                                             
+				for(int k=0; k<10; k++){
+					tab[i][k] = tab[i-1][k];
+				}
+			}
+			for(int l=0;l<10; l++){ // the first line being duplicated, we have to delete it into a line with 0's
+				tab[0][l] = 0;
+			}
+			count++;
+			score = score +(100*count);
+		}
+	}
+}
+	
