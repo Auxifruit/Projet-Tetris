@@ -175,11 +175,11 @@ void game() { // allow to play the game
 
 
 int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
-	printf("\nLa verification est en cours \n");
+	printf("\n the verification is loading... \n");
 	int n;
         for(int i=0; i<TAILLE; i++){ //detect for every line from 0 to 10
 		if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
-			printf("Ligne n°%d commence par un @ : \n", i+1);
+			printf("The line n°%d begin with an @ : \n", i+1);
 			for(int j=0; j<TAILLE;j++){ 
 				n = i; // begin with a hypothesis that the line is full, then change it if it is not full
 				if(tab[i][j]!=1){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
@@ -188,7 +188,7 @@ int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are t
                     	        }
                    	}
                    	if(n!=20){
-				printf("La ligne retourne %d\n", i);
+				printf("The line return %d\n", i);
                    		return i; //if the code detect a full line, it returns the line
                    	}
         	}  
@@ -197,7 +197,7 @@ int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are t
 }
 
 void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verification, useful to delete the line and replace by the line on the bottom
-	printf("La fonction delete line est en cours \n");
+	printf("The delete line function is loading... \n");
 	for(int m = 0; m<10; m++){
 		if(n!=20){
 			for(int j=0; j<10; j++){ 	// delete the line n with all the 1's to a line with 0's
