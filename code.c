@@ -1,14 +1,3 @@
-/*
-Moutsss
-Auxifruit
-
-2 contributors
-@Tomalgmt@Auxifruit
-
-187 lines (169 sloc)  4.85 KB
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
