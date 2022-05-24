@@ -26,17 +26,31 @@ void end_game(int score); // when the game is over, it will stop the game
 //void game(); // allow to start the game
 int verification(int tab[TAILLE][TAILLE]); //return the line in which a line is full and if no line is full, return NULL
 void linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verification, useful to delete the line and replace by the line on the bottom
-void show_block
+//void show_block
 
-int main() {
+int main(){
 	int tab[TAILLE][TAILLE];
 	int score = 1000;
 	srand(time(NULL)); // the initialisation of the random function
 	init_grid(tab);
 	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
+	place(tab);
 	show_grid(tab);
+	linedelete(tab, verification(tab), 100);
+	linedelete(tab, verification(tab), 100);
+	linedelete(tab, verification(tab), 100);
+	linedelete(tab, verification(tab), 100);
 	//timer();
 	//game();
+	show_grid(tab);
 	end_game(score);
 	printf("\n");
 	return 0;
@@ -63,9 +77,9 @@ void place(int tab[TAILLE][TAILLE]) { // place a block
 		}
 	} while (c < 65 || c > 74);
 	for(int i = 0; i < 4; i++) {
-		printf("%d \n", mat[0][i]);
 		tab[TAILLE -1 - i][(int)(c-65)] = mat[0][i];
 	}
+	show_grid(tab);
 }
 	
 void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
@@ -84,10 +98,10 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 	for(int a = 0; a < TAILLE; a++){
 		for(int b = 0; b < TAILLE; b++){
 			if(b == 0) {
-				printf("\n|%c|", block(tab[a][b]));
+				printf("\n|%d|", tab[a][b]);
 			}
 			else{
-				printf("%c|", block(tab[a][b]));
+				printf("%d|", tab[a][b]);
 			}
 		}
 	}
@@ -172,31 +186,35 @@ void game() { // allow to play the game
 
 
 int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
-	int n[TAILLE];
+	printf("\nLa verification est en cours \n");
+	int n;
         for(int i=0; i<TAILLE; i++){ //detect for every line from 0 to 10
 		if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
-			for(int j=0; j<TAILLE;j++){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
-				if(tab[i][j]!=1){
-					j=20; 
-					n[i]=20; //if there is no line completed by the '1' value, it add 20 to the table n so the delete line will detect that no line is full 
+			printf("Ligne n°%d commence par un @ : \n", i+1);
+			for(int j=0; j<TAILLE;j++){ 
+				n = i; // begin with a hypothesis that the line is full, then change it if it is not full
+				if(tab[i][j]!=1){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
+					n=20; // change the value of the line to 20 if it is not full
+					break;
                     	        }
                    	}
-                   	if(j!=20){
-                   		n[i] = i; // complete the table n if the verification is done on the i line
+                   	if(n!=20){
+				printf("La ligne retourne %d\n", i);
+                   		return i; //if the code detect a full line, it returns the line
                    	}
         	}  
 	}
-	return n;
+	return 20;
 }
 
-void linedelete(int tab[TAILLE][TAILLE], int n[], int score){ // after the verification, useful to delete the line and replace by the line on the bottom
-	int count = 0;
+void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verification, useful to delete the line and replace by the line on the bottom
+	printf("La fonction delete line est en cours \n");
 	for(int m = 0; m<10; m++){
-		if(n[m]!=20){
-			for(int j=0; j<10; j++){ // delete the line with all the 1's
-				tab[m][j] = 0;
-			}															// il faut supprimer la plus petite ligne du tableau et refair eavec la ligne d'apres
-			for(int i=m; i>0; i--){ // replace the line with all the 0's to the line on the bottom                                             
+		if(n!=20){
+			for(int j=0; j<10; j++){ 	// delete the line n with all the 1's to a line with 0's
+				tab[n][j] = 0;
+			}															
+			for(int i=n; i>0; i--){ 	// replace the line with all the 0's to the line on the bottom                                             
 				for(int k=0; k<10; k++){
 					tab[i][k] = tab[i-1][k];
 				}
@@ -204,8 +222,7 @@ void linedelete(int tab[TAILLE][TAILLE], int n[], int score){ // after the verif
 			for(int l=0;l<10; l++){ // the first line being duplicated, we have to delete it into a line with 0's
 				tab[0][l] = 0;
 			}
-			count++;
-			score = score +(100*count);
+			score = score + 100;
 		}
 	}
 }
