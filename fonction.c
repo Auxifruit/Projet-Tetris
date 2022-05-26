@@ -107,24 +107,612 @@ void end_game(int score) { // when the game is over
 	fclose(f);
 }
 
-Tetromino rand_tetro() {
+void rand_tetro(Tetromino *tetro) {
 	int random;
-	Tetromino tetro;
-	
-	random = 0; // pick a random number for a random piece
-	switch(random) {
-		case 0:
-			tetro.type[0][0] = 0, 0, 0, 0;
-			tetro.type[0][1] = 0, 1, 1, 0;
-			tetro.type[0][2] = 0, 1, 1, 0;
-			tetro.type[0][3] = 0, 0, 0, 0;
-			return tetro;
-		default:
-			tetro.type[0][0] = 0, 0, 0, 0;
-			tetro.type[0][1] = 0, 1, 1, 0;
-			tetro.type[0][2] = 0, 1, 1, 0;
-			tetro.type[0][3] = 0, 0, 0, 0;
-			return tetro;
+	random = rand() % 7; // pick a random number for a random piece
+	if(random == 0) { // 0 block
+			tetro->type[0][0][0] = 0; // 0 block
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][1][2] = 1;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 1;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0;
+			tetro->type[0][3][1] = 0;
+			tetro->type[0][3][2] = 0;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // 0 block
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 1;
+			tetro->type[1][1][3] = 0;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 1;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 0;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 0;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // 0 block
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][1][2] = 1;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 1;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 0;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // 0 block
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 0;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][1][2] = 1;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 1) { // I block
+			tetro->type[0][0][0] = 0; // I block & rotation 0
+			tetro->type[0][0][1] = 1;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][1][2] = 0;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 0;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0;
+			tetro->type[0][3][1] = 1;
+			tetro->type[0][3][2] = 0;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // I block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 1;
+			tetro->type[1][1][3] = 1;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 0;
+			tetro->type[1][2][2] = 0;
+			tetro->type[1][2][3] = 0;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 0;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // I block & rotation 1
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 1;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 0;
+			tetro->type[2][1][2] = 1;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 0;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 1;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // I block & rotation 1
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 0;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 0;
+			tetro->type[3][1][2] = 0;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 1;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 1;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 2) { // L block
+			tetro->type[0][0][0] = 0; // L block & rotation 0
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][1][2] = 0;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 0;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0; 
+			tetro->type[0][3][1] = 1;
+			tetro->type[0][3][2] = 1;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // L block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 0;
+			tetro->type[1][1][2] = 0;
+			tetro->type[1][1][3] = 1;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 1;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 1;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 0;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // L block & rotation 2
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][1][2] = 1;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 0;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 1;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // L block & rotation 3
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 0;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][1][2] = 1;
+			tetro->type[3][1][3] = 1;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 0;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 3) { // J block
+			tetro->type[0][0][0] = 0; // J block & rotation 0
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][1][2] = 1;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 0;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0; 
+			tetro->type[0][3][1] = 1;
+			tetro->type[0][3][2] = 0;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // J block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 0;
+			tetro->type[1][1][3] = 0;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 1;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 1;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 0;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // J block & rotation 2
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 1;
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][1][2] = 1;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 0;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 0;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // J block & rotation 3
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 1;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 0;
+			tetro->type[3][1][2] = 1;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 4) { // T block
+			tetro->type[0][0][0] = 0; // T block & rotation 0
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 0;
+			tetro->type[0][1][2] = 1;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 1;
+			tetro->type[0][2][3] = 1;
+		
+			tetro->type[0][3][0] = 0; 
+			tetro->type[0][3][1] = 0;
+			tetro->type[0][3][2] = 0;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // T block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 0;
+			tetro->type[1][1][3] = 0;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 1;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 0;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 1;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // T block & rotation 2
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][1][2] = 1;
+			tetro->type[2][1][3] = 1;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 0;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 0;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // T block & rotation 3
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 1;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][1][2] = 1;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 0;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 5) { // Z block
+			tetro->type[0][0][0] = 0; // Z block & rotation 0
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 0;
+			tetro->type[0][1][2] = 0;
+			tetro->type[0][1][3] = 0;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 1;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0; 
+			tetro->type[0][3][1] = 0;
+			tetro->type[0][3][2] = 1;
+			tetro->type[0][3][3] = 1;
+
+
+			tetro->type[1][0][0] = 0; // Z block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 0;
+			tetro->type[1][1][2] = 1;
+			tetro->type[1][1][3] = 0;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 1;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 0;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 1;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 0;
+
+
+			tetro->type[2][0][0] = 0; // Z block & rotation 2
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 0;
+			tetro->type[2][1][2] = 0;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 1;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 0;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 0;
+			tetro->type[2][3][2] = 1;
+			tetro->type[2][3][3] = 1;
+
+
+			tetro->type[3][0][0] = 0; // Z block & rotation 3
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 0;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 0;
+			tetro->type[3][1][2] = 1;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 1;
+			tetro->type[3][3][2] = 0;
+			tetro->type[3][3][3] = 0;			
+
+// ------------------------------------------------------------------------------
+	}
+	else if(random == 6) {// S block
+			tetro->type[0][0][0] = 0; // S block & rotation 0
+			tetro->type[0][0][1] = 0;
+			tetro->type[0][0][2] = 0;
+			tetro->type[0][0][3] = 0;
+		
+			tetro->type[0][1][0] = 0;
+			tetro->type[0][1][1] = 0;
+			tetro->type[0][1][2] = 1;
+			tetro->type[0][1][3] = 1;
+		
+			tetro->type[0][2][0] = 0;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 1;
+			tetro->type[0][2][3] = 0;
+		
+			tetro->type[0][3][0] = 0; 
+			tetro->type[0][3][1] = 0;
+			tetro->type[0][3][2] = 0;
+			tetro->type[0][3][3] = 0;
+
+
+			tetro->type[1][0][0] = 0; // S block & rotation 1
+			tetro->type[1][0][1] = 0;
+			tetro->type[1][0][2] = 0;
+			tetro->type[1][0][3] = 0;
+		
+			tetro->type[1][1][0] = 0;
+			tetro->type[1][1][1] = 0;
+			tetro->type[1][1][2] = 1;
+			tetro->type[1][1][3] = 0;
+		
+			tetro->type[1][2][0] = 0;
+			tetro->type[1][2][1] = 0;
+			tetro->type[1][2][2] = 1;
+			tetro->type[1][2][3] = 1;
+		
+			tetro->type[1][3][0] = 0;
+			tetro->type[1][3][1] = 0;
+			tetro->type[1][3][2] = 0;
+			tetro->type[1][3][3] = 1;
+
+
+			tetro->type[2][0][0] = 0; // S block & rotation 2
+			tetro->type[2][0][1] = 0;
+			tetro->type[2][0][2] = 0;
+			tetro->type[2][0][3] = 0;
+		
+			tetro->type[2][1][0] = 0;
+			tetro->type[2][1][1] = 0;
+			tetro->type[2][1][2] = 0;
+			tetro->type[2][1][3] = 0;
+		
+			tetro->type[2][2][0] = 0;
+			tetro->type[2][2][1] = 0;
+			tetro->type[2][2][2] = 1;
+			tetro->type[2][2][3] = 1;
+		
+			tetro->type[2][3][0] = 0;
+			tetro->type[2][3][1] = 1;
+			tetro->type[2][3][2] = 1;
+			tetro->type[2][3][3] = 0;
+
+
+			tetro->type[3][0][0] = 0; // S block & rotation 3
+			tetro->type[3][0][1] = 0;
+			tetro->type[3][0][2] = 0;
+			tetro->type[3][0][3] = 0;
+		
+			tetro->type[3][1][0] = 0;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][1][2] = 0;
+			tetro->type[3][1][3] = 0;
+		
+			tetro->type[3][2][0] = 0;
+			tetro->type[3][2][1] = 1;
+			tetro->type[3][2][2] = 1;
+			tetro->type[3][2][3] = 0;
+		
+			tetro->type[3][3][0] = 0;
+			tetro->type[3][3][1] = 0;
+			tetro->type[3][3][2] = 1;
+			tetro->type[3][3][3] = 0;
+	}
+	else{
+			printf("erreur block \n");
+			exit(1);
 	}
 }
 
