@@ -4,7 +4,6 @@ int main() {
 	int tab[TAILLE][TAILLE];
 	int score = 1000;
 	Tetromino tetro;
-	Tetromino all_tetro[MAXTETRO];
 	srand(time(NULL)); // the initialisation of the random function
 	tetro.type = malloc(ROTATION * sizeof(int));
 	for(int i = 0 ; i < ROTATION ; i++){
@@ -17,6 +16,8 @@ int main() {
 		}
 	}
 	rand_tetro(&tetro);
+	init_grid(tab);
+	show_grid(tab);
 	for(int l = 0; l < DIMENSION; l++) {
 		for(int m = 0; m < DIMENSION; m++) {
 			for(int n = 0; n < DIMENSION; n++) {
@@ -30,21 +31,13 @@ int main() {
 		}
 		printf("\n");
 	}
-	free(tetro.type);
-/*	init_grid(tab);
+	place(tab, &tetro);
 	show_grid(tab);
-	all_tetro[0] = rand_tetro();
-	for(int i = 0 ; i < ROTATION; i++){
-		for(int j=0 ; j < ROTATION; j++){
-			printf("%d", all_tetro[0]);
-		}
-	}
-	//place(tab, all_tetro[0]);
-	//show_grid(tab);
 	//timer();
 	//game();
-	end_game(score);
-	printf("\n");*/
+	//end_game(score);
+	free(tetro.type);
+	printf("\n");
 
 	return 0;
 }
