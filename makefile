@@ -2,10 +2,10 @@ CC = gcc
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
-all:exec
+all:tetris
 
 %.o: %.c header.h
 	$(CC) -c $< -o $@
 
-exec: $(OBJ)
+tetris: $(OBJ)
 	$(CC) $^ -o $@
