@@ -6,15 +6,16 @@ char input() { // input a char
 	return c;
 }
 
-void place(int tab[TAILLE][TAILLE], Tetromino tetro) {// place a block in the grid
+void place(int tab[TAILLE][TAILLE], Tetromino* tetro) {// place a block in the grid
 	char c;
 	do {
 		printf("\non which column you want to place your tetromino ? \n");
 		c = input();
 	} while (c < 65 || c > 74);
-	for(int i = 0; i < 4; i++) {
-		//tab[TAILLE -1 - i][(int)(c-65)] = tetro.type[0][i];
-		//tetro.type[0][2];
+	for(int i = 0; i < DIMENSION; i++) {
+		for(int j = 0; j < DIMENSION; j++) {
+			tab[TAILLE - i -1][(int)(c-65) + j] = tetro->type[0][i][j];
+		}
 	}
 }
 	
@@ -27,7 +28,7 @@ void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 }
 
 void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
-	printf("This is your grid: \n");
+	printf("\nThis is your grid: \n");
 	for(int k = 0; k < TAILLE; k++) {
 		printf(" %c", 65 + k);
 	}
