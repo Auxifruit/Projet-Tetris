@@ -24,3 +24,6 @@ void rand_tetro(Tetromino *tetro);
 //void game(); // allow to start the game
 //int verification(int tab[][]); //return the line in which a line is full and if no line is full, return NULL
 //void linedelete(int tab[][], int n); // after the verification, useful to delete the line and replace by the line on the bottom
+int verification(int tab[TAILLE][TAILLE]); //return the line in which a line is full and if no line is full, return NULL
+void linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verification, useful to delete the line and replace by the line on the bottom
+//void show_block
