@@ -27,3 +27,5 @@ void rand_tetro(Tetromino *tetro);
 int verification(int tab[TAILLE][TAILLE]); //return the line in which a line is full and if no line is full, return NULL
 void linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verification, useful to delete the line and replace by the line on the bottom
 //void show_block
+void show_tetro(Tetromino *tetro); // show the tetrimoni and its rotation
+void memory_block(Tetromino *tetro); // memory allocation of the tetromino
