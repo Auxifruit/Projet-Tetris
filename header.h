@@ -18,7 +18,7 @@ int block(int p); // transform int in char
 int difficulty(); // choose the level of difficulty, it will change the time between the placement of every tetrominos
 void timer(); // a timer that will be useful to the change of diffculty and time to change block position 
 void place(int tab[TAILLE][TAILLE], Tetromino* tetro); // place a block in the table
-char input(); // input a char
+void input(char *c); // input a char
 void end_game(int score); // when the game is over, it will stop the game
 void rand_tetro(Tetromino *tetro);
 //void game(); // allow to start the game
