@@ -1,20 +1,18 @@
 #include "header.h"
 
-char input() { // input a char
-	char c;
-	while (((c=getchar()) == '\n'));
-	return c;
+void input(char *c) { // input a char
+	while (((*c=getchar()) == '\n'));
 }
 
 void place(int tab[TAILLE][TAILLE], Tetromino* tetro) {// place a block in the grid
 	char c;
 	do {
 		printf("\non which column you want to place your tetromino ? \n");
-		c = input();
+		input(&c);
 	} while (c < 65 || c > 74);
 	for(int i = 0; i < DIMENSION; i++) {
 		for(int j = 0; j < DIMENSION; j++) {
-			tab[TAILLE - i -1][(int)(c-65) + j] = tetro->type[0][i][j];
+			tab[i][(int)(c-65) + j] = tetro->type[0][i][j];
 		}
 	}
 }
@@ -111,8 +109,8 @@ void end_game(int score) { // when the game is over
 
 void rand_tetro(Tetromino *tetro) {
 	int random;
-	random = rand() % 7; // pick a random number for a random piece
-	if(random == 0) { // 0 block
+	random = 6; // pick a random number for a random piece
+	/*if(random == 0) { // 0 block
 			tetro->type[0][1][1] = 1; // 0 block & rotation 0
 			tetro->type[0][1][2] = 1;
 			tetro->type[0][2][1] = 1;
@@ -294,9 +292,192 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[3][2][2] = 1;
 			tetro->type[3][2][3] = 1;
 			tetro->type[3][3][3] = 1;
+	}*/
+	if(random == 0) { // 0 block
+			tetro->type[0][0][0] = 1; // 0 block & rotation 0
+			tetro->type[0][0][1] = 1;
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][1][1] = 1;
+
+
+			tetro->type[1][0][0] = 1; // 0 block & rotation 1
+			tetro->type[1][0][1] = 1;
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+
+
+			tetro->type[2][0][0] = 1; // 0 block & rotation 2
+			tetro->type[2][0][1] = 1;
+			tetro->type[2][1][0] = 1;
+			tetro->type[2][1][1] = 1;
+
+			tetro->type[3][0][0] = 1; // 0 block & rotation 3
+			tetro->type[3][0][1] = 1;
+			tetro->type[3][1][0] = 1;
+			tetro->type[3][1][1] = 1;
 	}
 
-	else{
+// ------------------------------------------------------------------------------
+
+	else if(random == 1) { // I block
+			tetro->type[0][0][0] = 1; // I block & rotation 0
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][2][0] = 1;
+			tetro->type[0][3][0] = 1;
+
+
+			tetro->type[1][0][0] = 1; // I block & rotation 1
+			tetro->type[1][0][1] = 1;
+			tetro->type[1][0][2] = 1;
+			tetro->type[1][0][3] = 1;
+
+			tetro->type[2][0][0] = 1; // I block & rotation 2
+			tetro->type[2][1][0] = 1;
+			tetro->type[2][2][0] = 1;
+			tetro->type[2][3][0] = 1;
+
+
+			tetro->type[3][0][0] = 1; // I block & rotation 3
+			tetro->type[3][0][1] = 1;
+			tetro->type[3][0][2] = 1;
+			tetro->type[3][0][3] = 1;
+	}
+
+// ------------------------------------------------------------------------------
+
+	else if(random == 2) { // L block
+			tetro->type[0][0][0] = 1; // L block & rotation 0
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][2][0] = 1;
+			tetro->type[0][2][1] = 1;
+
+
+			tetro->type[1][0][2] = 1; // L block & rotation 1
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 1;
+		
+
+			tetro->type[2][0][0] = 1; // L block & rotation 2
+			tetro->type[2][0][1] = 1;
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][2][1] = 1;
+
+
+			tetro->type[3][1][1] = 1; // L block & rotation 3
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][2][0] = 1;
+			tetro->type[3][2][1] = 1;
+	}
+// ------------------------------------------------------------------------------
+
+	else if(random == 3) { // J block
+			tetro->type[0][0][0] = 1; // J block & rotation 0
+			tetro->type[0][0][1] = 1;
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][2][0] = 1;
+
+
+			tetro->type[1][0][0] = 1; // J block & rotation 1
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][1][2] = 1;
+
+
+			tetro->type[2][0][0] = 1; // J block & rotation 2
+			tetro->type[2][0][1] = 1;
+			tetro->type[2][0][2] = 1;
+			tetro->type[2][1][2] = 1;
+
+
+			tetro->type[3][0][1] = 1; // J block & rotation 3
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][2][0] = 1;
+			tetro->type[3][2][1] = 1;
+	}
+
+// ------------------------------------------------------------------------------
+
+	else if(random == 4) { // T block
+			tetro->type[0][0][1] = 1; // T block & rotation 0
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][1][2] = 1;
+
+
+			tetro->type[1][0][0] = 1; // T block & rotation 1
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][2][0] = 1;
+
+
+			tetro->type[2][0][0] = 1; // T block & rotation 2
+			tetro->type[2][0][1] = 1;
+			tetro->type[2][0][2] = 1;
+			tetro->type[2][1][1] = 1;
+
+
+			tetro->type[3][0][1] = 1; // T block & rotation 3
+			tetro->type[3][1][0] = 1;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][2][1] = 1;
+	}
+
+// ------------------------------------------------------------------------------
+
+	else if(random == 5) { // Z block
+			tetro->type[0][1][0] = 1; // Z block & rotation 0
+			tetro->type[0][1][1] = 1;
+			tetro->type[0][2][1] = 1;
+			tetro->type[0][2][2] = 1;
+
+
+			tetro->type[1][0][1] = 1; // Z block & rotation 1
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][2][0] = 1;
+
+
+			tetro->type[2][1][0] = 1; // Z block & rotation 2
+			tetro->type[2][1][1] = 1;
+			tetro->type[2][2][1] = 1;
+			tetro->type[2][2][2] = 1;
+
+
+			tetro->type[3][0][1] = 1; // Z block & rotation 3
+			tetro->type[3][1][0] = 1;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][2][0] = 1;			
+	}
+
+// ------------------------------------------------------------------------------
+
+	else if(random == 6) {// S block
+			tetro->type[0][0][1] = 1; // S block & rotation 0
+			tetro->type[0][0][2] = 1;
+			tetro->type[0][1][0] = 1;
+			tetro->type[0][1][1] = 1;
+
+
+			tetro->type[1][0][0] = 1; // S block & rotation 1
+			tetro->type[1][1][0] = 1;
+			tetro->type[1][1][1] = 1;
+			tetro->type[1][2][1] = 1;
+
+
+			tetro->type[2][0][1] = 1; // S block & rotation 2
+			tetro->type[2][0][2] = 1;
+			tetro->type[2][1][0] = 1;
+			tetro->type[2][1][1] = 1;
+
+
+			tetro->type[3][0][0] = 1; // S block & rotation 3
+			tetro->type[3][1][0] = 1;
+			tetro->type[3][1][1] = 1;
+			tetro->type[3][2][1] = 1;
+	}
+
+	else {
 			printf("erreur block \n");
 			exit(1);
 	}
@@ -370,6 +551,7 @@ void show_tetro(Tetromino *tetro) {
 			}
 		}
 		printf("\t.%d",l);
+		printf("\n");
 	}
 }
 
