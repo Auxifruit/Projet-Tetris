@@ -52,7 +52,31 @@ int gap_x(Tetromino *tetro){
 	
 
 
-
+int placement_x(Tetromino *tetro, int rotation, int column){
+	int calc[TAILLE][TAILLE];
+	int count=0;
+	int min_right=0;
+	for(int i=0; i<4;i++){
+		for(int j=3;j<0;j--){
+			if(tetro.type[rotation][i][j]!=0){// stocke le plus proche a droite
+				if(count<min){
+					min = count; // compte le plus proche a doite.
+				}  		
+			}	
+			else if(tetro.type[rotation][i][j] == 0){
+				count++;
+			}
+			count = 0;
+	}
+	for(int k=0; k<column;k++){
+		for(int l=0; l<4;l++){ // ça place le bloc au bon endroit sur les x
+			for(int m=0;m<4;m++){
+				if(min_right
+				calc[(columnmin_right][l] = tetro.type[k][l];
+	
+	
+		
+	
 
 
 
