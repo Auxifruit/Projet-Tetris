@@ -2,7 +2,7 @@
 
 
 ## Table des matières
-1. [INFORMATIONS GÉNÉRALES](#example)
+1. [INFORMATIONS GÉNÉRALES](#informations-générales)
 2. [Example2](#example2)
 3. [Third Example](#third-example)
 
