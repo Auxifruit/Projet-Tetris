@@ -6,13 +6,18 @@ void input(char *c) { // input a char
 
 void place(int tab[TAILLE][TAILLE], Tetromino* tetro) {// place a block in the grid
 	char c;
+	int sc = 0;
 	do {
 		printf("\non which column you want to place your tetromino ? \n");
-		input(&c);
+		sc = scanf("%c", &c);
+		if(sc != 1) {
+			printf("scanf error\n");
+			exit(2);
+		}
 	} while (c < 65 || c > 74);
 	for(int i = 0; i < DIMENSION; i++) {
 		for(int j = 0; j < DIMENSION; j++) {
-			tab[i][(int)(c-65) + j] = tetro->type[0][i][j];
+			tab[8 + i][(int)(c-65) + j] = tetro->type[0][i][j];
 		}
 	}
 }
@@ -44,6 +49,10 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 }
 
 int block(int p) { // transform int in char
+	if( p != 1 && p != 0) {
+		printf("\nerror: p must be egal to 1 or 0\n");
+		exit(1);
+	}
 	switch(p) {
 		case 0: return(32); break;
 		case 1: return(64); break;
@@ -51,17 +60,22 @@ int block(int p) { // transform int in char
 	}
 }
 int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
-	int *choice;
+	int choice;
+	int sc = 0;
 	printf("\n");
 	printf("choose your difficulty: \n");
 	printf("level 1 (7 seconds) / level 2 (5 seconds) / level 3 (3 seconds) \n");
 	do {
-		scanf("%d", &choice);
-		if(*choice != 1 && *choice != 2 && *choice != 3) {
+		sc = scanf("%d", &choice);
+		if(sc != 1) {
+			printf("scanf error: please enter a number \n");
+			exit(2);
+		}
+		if(choice != 1 && choice != 2 && choice != 3) {
 			printf("please choose a valid level !\n");
 		}
-	} while(*choice != 1 && *choice != 2 && *choice != 3);
-	return *choice;
+	} while(choice != 1 && choice != 2 && choice != 3);
+	return choice;
 }
 
 
@@ -69,12 +83,17 @@ void timer() { // the timer
 	time_t start, end;
 	double elapsed;
 	int a;
-	int b=0;
+	int sc = 0;
+	int b = 0;
 	time(&start);
 	
-	while(b ==0) {
+	while(b == 0) {
 		time(&end);
 		scanf("%d", &a);
+		if(sc != 1) {
+			printf("scanf error: please enter a number \n");
+			exit(2);
+		}
 		elapsed = difftime(end, start);
 		//printf("time elapsed: %f \n", elapsed);
 		if(elapsed > 5) {
@@ -87,6 +106,11 @@ void timer() { // the timer
 void end_game(int score) { // when the game is over
 	FILE* f = NULL;
 	char nom[256];
+	int sc = 0;
+	if(score < 0) {
+		printf("score error\n");
+		exit(0);
+	} 
 	printf("\n\nGAME OVER ! \n");
 	f = fopen("HIGH_SCORE.txt","r+");
 	if(f == NULL) {
@@ -94,7 +118,11 @@ void end_game(int score) { // when the game is over
 		exit(1);
 	}
 	printf("\nenter your name: ");
-	scanf("%s", &nom);
+	sc = scanf("%s", &nom);
+	if(sc != 1) {
+		printf("scanf error\n");
+		exit(2);
+	}
 	fseek(f, 0, SEEK_END);
 	fprintf(f, "\nname: %s / score: %d",nom, score);
 	rewind(f);
@@ -107,9 +135,14 @@ void end_game(int score) { // when the game is over
 	fclose(f);
 }
 
+void int_random(int* random) {
+	*random = rand() % 7;
+}
+	
+
 void rand_tetro(Tetromino *tetro) {
 	int random;
-	random = 6; // pick a random number for a random piece
+	int_random(&random); // pick a random number for a random piece
 	/*if(random == 0) { // 0 block
 			tetro->type[0][1][1] = 1; // 0 block & rotation 0
 			tetro->type[0][1][2] = 1;
@@ -566,4 +599,20 @@ void memory_block(Tetromino *tetro) {
 			}
 		}
 	}
+}
+
+void choose_rotation(int* rotation) {
+	int sc = 0;
+	do {
+		printf("\nchoose the rotation between 1 and 4\n");
+		sc = scanf("%d", rotation);
+		if(sc != 1) {
+			printf("error scanf\n");
+			exit(1);
+		}
+		if(*rotation != 1 && *rotation != 2 && *rotation != 3 && *rotation != 4) {
+			printf("please choose a number between 1 and 4\n");
+		}
+	} while(*rotation != 1 && *rotation != 2 && *rotation != 3 && *rotation != 4);
+	*rotation = *rotation - 1;
 }
