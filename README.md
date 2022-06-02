@@ -6,6 +6,6 @@
 2. [Example2](#example2)
 3. [Third Example](#third-example)
 
-## Example
+## INFORMATIONS GÉNÉRALES
 ## Example2
 ## Third Example
