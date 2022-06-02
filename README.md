@@ -30,7 +30,7 @@ Le bloc est ensuite placer automatiquement dans le tableau, voici un aperçu du 
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/GRID1.png "Exemple tableau")
 
-Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de placement.
+Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de place.
 
 ## CRÉATEURS
 
