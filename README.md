@@ -7,8 +7,8 @@
 3. [Third Example](#third-example)
 
 ## INFORMATIONS GÉNÉRALES
-
-  printf("hello world!\n");
-
+```python
+  printf s
+```
 ## Example2
 ## Third Example
