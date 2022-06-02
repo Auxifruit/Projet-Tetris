@@ -4,7 +4,7 @@
 ## Table des matières
 1. [INFORMATIONS GÉNÉRALES](#informations-générales)
 2. [UTILISATION](#utilisation)
-3. [Third Example](#third-example)
+3. [CRÉATEURS](#créateur)
 
 ## INFORMATIONS GÉNÉRALES
 
@@ -32,4 +32,8 @@ Le bloc sera ensuite placer automatiquement dans le tableau, voici un aperçu:
 
 Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de placement.
 
-## Third Example
+## CRÉATEURS
+
+Binôme composé de Tom ALLAGUILLEMETTE et Guillaume BARRÉ en PRÉING 1 GROUPE 7 
+
+Rôle:
