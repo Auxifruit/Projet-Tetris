@@ -27,6 +27,7 @@ Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc grâce �
   void place(tab[TAILLE][TAILLE]);
 ```
 Le bloc sera ensuite placer automatiquement dans le tableau, voici un aperçu:
-![alt text](C:\Users\utilisateur\Desktop\GRID1.png "Exemple tableau")
+
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/GRID1.png "Exemple tableau")
 
 ## Third Example
