@@ -8,7 +8,8 @@
 
 ## INFORMATIONS GÉNÉRALES
 ```python
-  printf s
+  s = 8
+  print s
 ```
 ## Example2
 ## Third Example
