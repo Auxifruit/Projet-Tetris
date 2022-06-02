@@ -26,7 +26,7 @@ Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc et son o
 ```c
   void place(tab[TAILLE][TAILLE]);
 ```
-Le bloc sera ensuite placer automatiquement dans le tableau, voici un aperçu:
+Le bloc sera ensuite placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 0:
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/GRID1.png "Exemple tableau")
 
