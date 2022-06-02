@@ -1,6 +1,6 @@
 # PROJET TÉTRIS PRÉ_ING 1
 
-![alt text]( "Logo tetris")
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/LOGO.png "Logo tetris CYtech")
 
 ## Table des matières
 1. [INFORMATIONS GÉNÉRALES](#informations-générales)
