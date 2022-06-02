@@ -7,9 +7,9 @@
 3. [Third Example](#third-example)
 
 ## INFORMATIONS GÉNÉRALES
-```python
-  s = 8
-  print s
+```c
+  int s = 8;
+  printf("s = %d\n", s);
 ```
 ## Example2
 ## Third Example
