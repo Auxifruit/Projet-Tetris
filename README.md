@@ -16,18 +16,20 @@ Pour compilier le programme:
 ```c
   $ make
 ```
-Pur lancer le programme:
+Pour lancer le programme:
 ```c
   $ ./tetris
 ```
 ### JOUABILITÉ
 
-Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc grâce à la fonction:
+Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
 ```c
   void place(tab[TAILLE][TAILLE]);
 ```
 Le bloc sera ensuite placer automatiquement dans le tableau, voici un aperçu:
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/GRID1.png "Exemple tableau")
+
+Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de placement.
 
 ## Third Example
