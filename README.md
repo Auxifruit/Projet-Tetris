@@ -38,8 +38,3 @@ Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'�
 ## CRÉATEURS
 
 Binôme composé de Tom ALLAGUILLEMETTE et Guillaume BARRÉ en PRÉING 1 GROUPE 7
-
-Rôle:
-  - Code: Tom et Guillaume
-  - Commentaire: Tom
-  - Readme: Guillaume
