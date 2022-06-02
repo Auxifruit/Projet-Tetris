@@ -7,9 +7,12 @@
 3. [Third Example](#third-example)
 
 ## INFORMATIONS GÉNÉRALES
+
+Le but de ce projet est de réaliser un programme permettant de jouer au jeu TETRIS classique depuis le terminal. La particularité de cette version est que le jeu est plus statique que l'original. Nous avons donc écrit le code dans le langage de programmation C sur linux.
+
+## Example2
 ```c
   int s = 8;
   printf("s = %d\n", s);
 ```
-## Example2
 ## Third Example
