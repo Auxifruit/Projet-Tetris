@@ -5,7 +5,7 @@
 ## Table des matières
 1. [INFORMATIONS GÉNÉRALES](#informations-générales)
 2. [UTILISATION](#utilisation)
-3. [CRÉATEURS](#créateur)
+3. [CRÉATEURS](#créateurs)
 
 ## INFORMATIONS GÉNÉRALES
 
