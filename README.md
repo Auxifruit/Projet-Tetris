@@ -29,7 +29,7 @@ Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc et son o
 ```
 Le bloc est ensuite placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 0:
 
-![alt text](https://github.com/Auxifruit/tetris-projet/blob/main/GRID1.png "Exemple tableau")
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID1.png "Exemple tableau")
 
 Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de place, c'est-à-dire qu'on ne peut plus placer de bloc.
 
