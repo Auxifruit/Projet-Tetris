@@ -4,6 +4,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 	int calc[TAILLE][TAILLE];
 	int right_gap= 4-tetro->thickness[rotation];
 	int constraint=0; // act like a boolean
+	int blocked =0;
 	int thickness = tetro->thickness[rotation];
 	for(int z=0;z<TAILLE;z++){
 		for(int y=0;y<TAILLE;y++){
@@ -119,47 +120,47 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 			exit(1);
 		}
 	}
-	show_grid(calc); 
-	for(int a=0;a<TAILLE;a++){ // ligne par ligne on verifie la si ça peut descendre
+	while(blocked!=1){
 		for(int b=9;b>=0;b--){
-			for(int c=0;c<TAILLE;c++){ // chacune des cases du teableau
-				if(calc[b][c]==1 && tab[b+1][c]==1){ 
-					for(int d=0;d<TAILLE;d++){
-						for(int t = 0;t<TAILLE;t++){
-							if(calc[d][t]==1){
-								tab[d][t]=calc[d][t]; // add the calc to the tab if the block is blocked							
-							}
-						}
-					}
-					a=TAILLE+1; // stop the loop
-					b=-TAILLE;
+			for(int c=0;c<TAILLE;c++){
+				if((calc[b][c]==1 && tab[b+1][c]==1)||(calc[b][c+1]==1 && tab[b+1][c+1]==1)||(calc[b][c+2]==1 && tab[b+1][c+2]==1)||(calc[b][c+3]==1 && tab[b+1][c+3]==1)||(calc[b-1][c]==1 && tab[b][c]==1)||(calc[b-1][c+1]==1 && tab[b][c+1]==1)||(calc[b-1][c+2]==1 && tab[b][c+2]==1)||(calc[b-1][c+3]==1 && tab[b][c+3]==1)){
+				
+					calcimpression(tab,calc);
+					return;
 				}
-				else{
-					if(calc[b][c]==1 && b==9){
-						show_grid(calc);
-						for(int g=0;g<TAILLE;g++){
-							for(int h = 0;h<TAILLE;h++){
-								if(calc[g][h]==1){
-									tab[g][h]=calc[g][h]; //place the bloc at the bottom of the real tab
-								}
-							}
-						}
-						a=TAILLE+1;
-						b=-TAILLE;
-					}
-					else{
-						if(calc[b][c]==1){
-							calc[b+1][c]=calc[b][c]; //place the tetromino one case lower
-							calc[b][c]=0;
-						}		
-					}
+				else if(calc[b][c]==1 && b==8){
+					fall(calc);
+					calcimpression(tab,calc);
+					return;
 				}
 			}
 		}
+		fall(calc);
 	}
-}		
+	calcimpression(tab,calc);
+}
+
+
+
+void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
+	for(int g=0;g<TAILLE;g++){
+		for(int h = 0;h<TAILLE;h++){
+			if(calc[g][h]==1){
+				tab[g][h]=calc[g][h]; //place the bloc at the bottom of the real tab
+			}
+		}
+	}
+}
+
+
+void fall(int calc[TAILLE][TAILLE]){
+	for(int i=9; i>=0;i--){
+		for(int j=0;j<TAILLE;j++){
+			if(calc[i][j]==1){
+				calc[1+i][j]=1;
+				calc[i][j]=0;
+			}
+		}
+	}
+}
 	
-		
-		
-
-
