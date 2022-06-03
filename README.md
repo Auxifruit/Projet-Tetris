@@ -39,4 +39,4 @@ Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'�
 
 ## CRÉATEURS
 
-Binôme composé de Tom ALLAGUILLEMETTE et Guillaume BARRÉ en PRÉING 1 GROUPE 7
+Binôme composé de Tom ALLAGUILLEMETTE(aka Moutsss) et Guillaume BARRÉ(aka Auxifruit) en PRÉING 1 GROUPE 7
