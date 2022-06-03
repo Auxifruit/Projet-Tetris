@@ -659,6 +659,15 @@ void memory_block(Tetromino *tetro) { // memory allocation of the tetromino
 	}
 }
 
+void place(int tab[TAILLE][TAILLE], Tetromino* tetro) {// place a block in the grid
+	char column;
+	int rotation;
+	choose_column(&column);
+	choose_rotation(&rotation);
+	placement(tetro,rotation,(int)column,tab);
+	
+}
+
 void choose_rotation(int* rotation) {
 	int sc = 0; // will be use to check the scanf
 	do { // do while loop to have the right value for the rotation
@@ -673,4 +682,21 @@ void choose_rotation(int* rotation) {
 		}
 	} while(*rotation != 1 && *rotation != 2 && *rotation != 3 && *rotation != 4);
 	*rotation = *rotation - 1;
+}
+
+void choose_column(char* column) {
+	int sc; // will be use to check the scanf
+	do { // do while loop to have the right value for the column
+		printf("\nchoose the column between A and J\n");
+		sc = scanf("%c", column); // test if the scanf worked
+		if(sc != 1) {
+			printf("error scanf\n");
+			exit(1);
+		}
+		if(*column < 65 || *column > 74) {
+			printf("please choose a letter between A and J\n");
+		}
+	} while(*column < 65 || *column > 74);
+	*column=*column-65;
+	
 }
