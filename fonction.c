@@ -4,43 +4,38 @@ void input(char *c) { // input a char
 	while (((*c=getchar()) == '\n'));
 }
 
-void place(int tab[TAILLE][TAILLE], Tetromino* tetro) {// place a block in the grid
-	char c;
-	int sc = 0;
-	do {
-		printf("\non which column you want to place your tetromino ? \n");
-		sc = scanf("%c", &c);
-		if(sc != 1) {
-			printf("scanf error\n");
-			exit(2);
-		}
-	} while (c < 65 || c > 74);
-	for(int i = 0; i < DIMENSION; i++) {
-		for(int j = 0; j < DIMENSION; j++) {
-			tab[8 + i][(int)(c-65) + j] = tetro->type[0][i][j];
-		}
-	}
+void logo() { // printf the classic tetris logo
+printf("\033[33m _______  ____  _______  _____  _  ______\n");
+printf("|__   __||  __/|__   __|| __  /|_||  ____/\n");
+printf("   | |   | |__    | |   | |/ / | | \\ \\ \n");
+printf("   | |   |  _/    | |   | |\\ \\ | |  \\ \\ \n");
+printf("   | |   | |      | |   | | \\ \\| |   \\ \\ \n");
+printf("   | |   | |____  | |   | |  \\ \\ | ___\\ \\ \n");
+printf("   |_|   |______\\ |_|   |_|   \\_\\||______| \n");
+printf("\033[37\nm");
 }
-	
+
+
+
 void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 	for(int i = 0; i < TAILLE; i++){
 		for(int j = 0; j < TAILLE; j++) {
-			tab[i][j] = 0;
+			tab[i][j] = 0; // all the case of the tab is equal to 0
 		}
 	}
 }
 
 void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
 	printf("\nThis is your grid: \n");
-	for(int k = 0; k < TAILLE; k++) {
+	for(int k = 0; k < TAILLE; k++) { // printf the letter for each column from A to J
 		printf(" %c", 65 + k);
 	}
 	for(int a = 0; a < TAILLE; a++){
 		for(int b = 0; b < TAILLE; b++){
-			if(b == 0) {
+			if(b == 0) { // allow to print the first case of each lign
 				printf("\n|%c|", block(tab[a][b]));
 			}
-			else{
+			else{ // printf the rest of the lign
 				printf("%c|", block(tab[a][b]));
 			}
 		}
@@ -49,25 +44,27 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 }
 
 int block(int p) { // transform int in char
-	if( p != 1 && p != 0) {
+	if(p != 1 && p != 0) { // test if the parameter is right
 		printf("\nerror: p must be egal to 1 or 0\n");
 		exit(1);
 	}
 	switch(p) {
-		case 0: return(32); break;
-		case 1: return(64); break;
-		default: return(69);
+		case 0: return(32); break; // transform the 0 in ' '
+		case 1: return(64); break; // transform the 1 in '@'
+		default: printf("error transformation \n"); // if there is an error
+			exit(1);
 	}
 }
+
 int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
-	int choice;
-	int sc = 0;
+	int choice; // will countain the level of diffuculty choose by the user
+	int sc = 0; // will be use to check the scanf
 	printf("\n");
 	printf("choose your difficulty: \n");
 	printf("level 1 (7 seconds) / level 2 (5 seconds) / level 3 (3 seconds) \n");
-	do {
+	do { // do while loop to have the right value for the difficulty
 		sc = scanf("%d", &choice);
-		if(sc != 1) {
+		if(sc != 1) { // check if there's an error
 			printf("scanf error: please enter a number \n");
 			exit(2);
 		}
@@ -75,11 +72,17 @@ int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy 
 			printf("please choose a valid level !\n");
 		}
 	} while(choice != 1 && choice != 2 && choice != 3);
-	return choice;
+	switch(choice) {
+		case 1: return(7);
+		case 2: return(5);
+		case 3: return(3);
+		default: printf("error value \n");
+			exit(1);
+	}
 }
 
 
-void timer() { // the timer
+void timer(int time_limit) { // a timer that put a time limit to choose to column and the tetromino rotation
 	time_t start, end;
 	double elapsed;
 	int a;
@@ -96,7 +99,7 @@ void timer() { // the timer
 		}
 		elapsed = difftime(end, start);
 		//printf("time elapsed: %f \n", elapsed);
-		if(elapsed > 5) {
+		if(elapsed > time_limit) {
 			break;
 		}
 	}
@@ -104,39 +107,48 @@ void timer() { // the timer
 }
 
 void end_game(int score) { // when the game is over
-	FILE* f = NULL;
-	char nom[256];
-	int sc = 0;
-	if(score < 0) {
+	FILE* file = NULL; // will be the pointer of the file
+	char nom[256]; // will contain the name of the player
+	int sc = 0; // will be use to check the scanf
+	int c = EOF + 1; // will be use to printf the files
+	if(score < 0) { // test if the parameter is right
 		printf("score error\n");
 		exit(0);
 	} 
 	printf("\n\nGAME OVER ! \n");
-	f = fopen("HIGH_SCORE.txt","r+");
-	if(f == NULL) {
+	file = fopen("HIGH_SCORE.txt","r+"); // open the file which countain the player's score
+	if(file == NULL) { // check if the file was open
 		printf("opening file error \n");
 		exit(1);
 	}
-	printf("\nenter your name: ");
+	printf("\nenter your name: "); // allow the player to enter his name
 	sc = scanf("%s", &nom);
-	if(sc != 1) {
+	if(sc != 1) { // test if the scanf worked
 		printf("scanf error\n");
 		exit(2);
 	}
-	fseek(f, 0, SEEK_END);
-	fprintf(f, "\nname: %s / score: %d",nom, score);
-	rewind(f);
-	int c = EOF + 1;
+	fseek(file, 0, SEEK_END); // put the cursor at the end of the file to add to player's score and name
+	fprintf(file, "name: %s / score: %d",nom, score);
+	rewind(file); // put the cursor at the beginning of the file to print it
 	while(c != EOF) {
 		printf("%c",c);
-		c = fgetc(f);
+		c = fgetc(file);
+		if(c == EOF) { // test if we have a fgetc error
+			if(feof(file)) { // if c is EOF
+				break;
+			}
+			else{ // if we have an error
+				printf("fgetc error \n");
+				exit(1);
+			}
+		}
 	}
 	printf("\n\nthanks for playing our game! \n");
-	fclose(f);
+	fclose(file); // close the file
 }
 
-void int_random(int* random) {
-	*random = rand() % 7;
+void int_random(int* random) { // return a random number to choose a tetromino
+	*random = rand() % 7; // random number between 0 and 6
 }
 	
 
@@ -327,6 +339,8 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[3][3][3] = 1;
 	}*/
 	if(random == 0) { // 0 block
+			tetro->color = 33;
+			
 			tetro->type[0][0][0] = 1; // 0 block & rotation 0
 			tetro->type[0][0][1] = 1;
 			tetro->type[0][1][0] = 1;
@@ -353,6 +367,8 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 1) { // I block
+			tetro->color = 36;
+	
 			tetro->type[0][0][0] = 1; // I block & rotation 0
 			tetro->type[0][1][0] = 1;
 			tetro->type[0][2][0] = 1;
@@ -379,6 +395,8 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 2) { // L block
+			tetro->color = 37;
+
 			tetro->type[0][0][0] = 1; // L block & rotation 0
 			tetro->type[0][1][0] = 1;
 			tetro->type[0][2][0] = 1;
@@ -397,14 +415,16 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[2][2][1] = 1;
 
 
-			tetro->type[3][1][1] = 1; // L block & rotation 3
-			tetro->type[3][1][1] = 1;
-			tetro->type[3][2][0] = 1;
-			tetro->type[3][2][1] = 1;
+			tetro->type[3][0][0] = 1; // L block & rotation 3
+			tetro->type[3][0][1] = 1;
+			tetro->type[3][0][2] = 1;
+			tetro->type[3][1][0] = 1;
 	}
 // ------------------------------------------------------------------------------
 
 	else if(random == 3) { // J block
+			tetro->color = 34;
+
 			tetro->type[0][0][0] = 1; // J block & rotation 0
 			tetro->type[0][0][1] = 1;
 			tetro->type[0][1][0] = 1;
@@ -432,6 +452,8 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 4) { // T block
+			tetro->color = 35;
+
 			tetro->type[0][0][1] = 1; // T block & rotation 0
 			tetro->type[0][1][0] = 1;
 			tetro->type[0][1][1] = 1;
@@ -459,10 +481,12 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 5) { // Z block
-			tetro->type[0][1][0] = 1; // Z block & rotation 0
+			tetro->color = 31;
+
+			tetro->type[0][0][0] = 1; // Z block & rotation 0
+			tetro->type[0][0][1] = 1;
 			tetro->type[0][1][1] = 1;
-			tetro->type[0][2][1] = 1;
-			tetro->type[0][2][2] = 1;
+			tetro->type[0][1][2] = 1;
 
 
 			tetro->type[1][0][1] = 1; // Z block & rotation 1
@@ -471,10 +495,10 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[1][2][0] = 1;
 
 
-			tetro->type[2][1][0] = 1; // Z block & rotation 2
+			tetro->type[2][0][0] = 1; // Z block & rotation 2
+			tetro->type[2][0][1] = 1;
 			tetro->type[2][1][1] = 1;
-			tetro->type[2][2][1] = 1;
-			tetro->type[2][2][2] = 1;
+			tetro->type[2][1][2] = 1;
 
 
 			tetro->type[3][0][1] = 1; // Z block & rotation 3
@@ -486,6 +510,8 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 6) {// S block
+			tetro->color = 32;
+
 			tetro->type[0][0][1] = 1; // S block & rotation 0
 			tetro->type[0][0][2] = 1;
 			tetro->type[0][1][0] = 1;
@@ -511,7 +537,7 @@ void rand_tetro(Tetromino *tetro) {
 	}
 
 	else {
-			printf("erreur block \n");
+			printf("block error \n");
 			exit(1);
 	}
 }
@@ -527,7 +553,7 @@ void game() { // allow to play the game
 	end_game(int score);
 }
 */
-
+/*
 int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
 	printf("\n the verification is loading... \n");
 	int n;
@@ -568,44 +594,40 @@ void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verific
 			score = score + 100;
 		}
 	}
-}
+}*/
 
-void show_tetro(Tetromino *tetro) {
-	printf("This is your block with its orientation:");
+void show_tetro(Tetromino *tetro) { // show the tetrimoni and its rotation
+	printf("This is your block with its orientation:\n");
 	for(int l = 0; l < DIMENSION; l++) {
 		for(int m = 0; m < DIMENSION; m++) {
 			for(int n = 0; n < DIMENSION; n++) {
-				if(n == 0) {
-					printf("\n%c", block(tetro->type[l][m][n]));
-				}
-				else {
-					printf("%c", block(tetro->type[l][m][n]));
-				}
+					printf("\033[%dm%c", tetro->color, block(tetro->type[m][l][n])); // show the first row of each tetromino before going to the next lign
 			}
+			printf("	"); // allow to separate each rotation
 		}
-		printf("\t.%d",l);
-		printf("\n");
+	printf("\033[37m\n"); // turn back the color to white
 	}
+	for(int i = 1; i < DIMENSION + 1; i++){ // allow to print the number of each rotation to 1 to 4
+		printf("%d.	",i);
+	}
+	printf("\n");
 }
 
-void memory_block(Tetromino *tetro) {
-	tetro->type = malloc(ROTATION * sizeof(int));
+void memory_block(Tetromino *tetro) { // memory allocation of the tetromino
+	tetro->type = malloc(ROTATION * sizeof(int)); // allocation of the first tab
 	for(int i = 0 ; i < ROTATION ; i++){
-		tetro->type[i] = malloc(ROTATION * sizeof(int));
+		tetro->type[i] = malloc(ROTATION * sizeof(int)); // allocation of the second tab
 		for(int j = 0 ; j < ROTATION; j++){
-			tetro->type[i][j] = malloc(ROTATION * sizeof(int));
-			for(int k = 0 ; k < ROTATION; k++){
-				tetro->type[i][j][k] = 0;
-			}
+			tetro->type[i][j] = malloc(ROTATION * sizeof(int)); // allocation of the third tab
 		}
 	}
 }
 
 void choose_rotation(int* rotation) {
-	int sc = 0;
-	do {
+	int sc = 0; // will be use to check the scanf
+	do { // do while loop to have the right value for the rotation
 		printf("\nchoose the rotation between 1 and 4\n");
-		sc = scanf("%d", rotation);
+		sc = scanf("%d", rotation); // test if the scanf worked
 		if(sc != 1) {
 			printf("error scanf\n");
 			exit(1);
