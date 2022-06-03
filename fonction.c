@@ -340,6 +340,11 @@ void rand_tetro(Tetromino *tetro) {
 	}*/
 	if(random == 0) { // 0 block
 			tetro->color = 33;
+		
+			tetro->thickness[0]= 2;
+			tetro->thickness[1]= 2;
+			tetro->thickness[2]= 2;
+			tetro->thickness[3]= 2;
 			
 			tetro->type[0][0][0] = 1; // 0 block & rotation 0
 			tetro->type[0][0][1] = 1;
@@ -368,6 +373,11 @@ void rand_tetro(Tetromino *tetro) {
 
 	else if(random == 1) { // I block
 			tetro->color = 36;
+		
+			tetro->thickness[0]=1;
+			tetro->thickness[1]=4;
+			tetro->thickness[2]=1;
+			tetro->thickness[3]=4;
 	
 			tetro->type[0][0][0] = 1; // I block & rotation 0
 			tetro->type[0][1][0] = 1;
@@ -390,12 +400,18 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[3][0][1] = 1;
 			tetro->type[3][0][2] = 1;
 			tetro->type[3][0][3] = 1;
+			
 	}
 
 // ------------------------------------------------------------------------------
 
 	else if(random == 2) { // L block
 			tetro->color = 37;
+		
+			tetro->thickness[0]=2;
+			tetro->thickness[1]=3;
+			tetro->thickness[2]=2;
+			tetro->thickness[3]=3;
 
 			tetro->type[0][0][0] = 1; // L block & rotation 0
 			tetro->type[0][1][0] = 1;
@@ -424,6 +440,11 @@ void rand_tetro(Tetromino *tetro) {
 
 	else if(random == 3) { // J block
 			tetro->color = 34;
+		
+			tetro->thickness[0]=2;
+			tetro->thickness[1]=3;
+			tetro->thickness[2]=3;
+			tetro->thickness[3]=2;
 
 			tetro->type[0][0][0] = 1; // J block & rotation 0
 			tetro->type[0][0][1] = 1;
@@ -453,6 +474,11 @@ void rand_tetro(Tetromino *tetro) {
 
 	else if(random == 4) { // T block
 			tetro->color = 35;
+		
+			tetro->thickness[0]=3;
+			tetro->thickness[1]=2;
+			tetro->thickness[2]=3;
+			tetro->thickness[3]=2;
 
 			tetro->type[0][0][1] = 1; // T block & rotation 0
 			tetro->type[0][1][0] = 1;
@@ -483,6 +509,11 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 5) { // Z block
 			tetro->color = 31;
 
+			tetro->thickness[0]=3;
+			tetro->thickness[1]=2;
+			tetro->thickness[2]=3;
+			tetro->thickness[3]=2;
+		
 			tetro->type[0][0][0] = 1; // Z block & rotation 0
 			tetro->type[0][0][1] = 1;
 			tetro->type[0][1][1] = 1;
@@ -512,6 +543,11 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 6) {// S block
 			tetro->color = 32;
 
+			tetro->thickness[0]=3;
+			tetro->thickness[1]=2;
+			tetro->thickness[2]=3;
+			tetro->thickness[3]=2;
+		
 			tetro->type[0][0][1] = 1; // S block & rotation 0
 			tetro->type[0][0][2] = 1;
 			tetro->type[0][1][0] = 1;
