@@ -30,11 +30,12 @@ void linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verific
 //void show_block*/
 void show_tetro(Tetromino *tetro); // show the tetrimoni and its rotation
 void memory_block(Tetromino *tetro); // memory allocation of the tetromino
-void place(int tab[TAILLE][TAILLE], Tetromino* tetro); // place a block in the table
+void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score); // place a block in the table
 void choose_rotation(int* rotation); // alow to choose the block's rotation
 void choose_column(char* column); // alow to choose the block's column
 void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILLE]); // place the bloc with the colisions
 void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]); // add the calc to the final tab
 void fall(int calc[TAILLE][TAILLE]); //make the block fall by one
+void verifgameover(int tab[TAILLE][TAILLE], int score); //verification for the for the first line of the tab, if there is a bloc, it's game over
 
 
