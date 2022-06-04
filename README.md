@@ -29,7 +29,7 @@ Pour lancer le programme:
 
 Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
 ```c
-  void place(tab[TAILLE][TAILLE]);
+  void place(int tab[TAILLE][TAILLE], Tetromoni* tetro, int score, int level);
 ```
 Le bloc est ensuite placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 0:
 
