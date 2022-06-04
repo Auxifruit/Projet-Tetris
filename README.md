@@ -11,6 +11,10 @@
 
 Le but de ce projet est de réaliser un programme permettant de jouer au jeu TETRIS classique depuis le terminal. La particularité de cette version est que le jeu est plus statique que l'original. Nous avons donc écrit le code dans le langage de programmation C sur linux.
 
+Voici à quoi ressemblera l'interface du jeu:
+
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID0.png "Exemple interface")
+
 ## UTILISATION
 
 Pour compilier le programme:
