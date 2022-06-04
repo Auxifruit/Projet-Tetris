@@ -54,7 +54,7 @@ Le but du jeu est donc de compléter des lignes pour augmenter son score, il y a
 
 Exemple ci-dessous:
 
-![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GAMEOVER.png "Exemple game over")
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GAME-OVER.png "Exemple game over")
 
 ## CRÉATEURS
 
