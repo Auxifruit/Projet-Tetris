@@ -27,12 +27,12 @@ Pour lancer le programme:
 ```
 ### JOUABILITÉ
 
-Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1 et 3. Le niveau déterminera le temps que vous aurez pour jouer, 7 secondes pour le niveau 1, 5 secondes pour le niveau 2 et 3 secondes pour le niveau 3. Ce choix est fait grâce à la fonction suivante:
+Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1 et 3. Le niveau déterminera le temps que vous aurez pour jouer, 7 secondes pour le niveau 1, 5 secondes pour le niveau 2 et 3 secondes pour le niveau 3. Si vous dépassez le temps limite, l'orientation du tétromino puis la colonne sera choisi aléatoirement. Ce choix est fait grâce à la fonction suivante:
 ```c
   int difficulty();
 ```
 
-Vous devrez ensuite saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
+Vous devrez ensuite saisir l'orientation du tétromino puis la colonne sur la quelle vous voulez le placer grâce à la fonction:
 ```c
   void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score, int level);
 ```
