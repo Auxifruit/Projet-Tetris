@@ -25,6 +25,25 @@ void init_grid(int tab[TAILLE][TAILLE]) { // initialize the grid
 	}
 }
 
+
+
+void show_tetro(Tetromino *tetro) { // show the tetrimoni and its rotation
+	printf("This is your block with its orientation:\n");
+	for(int l = 0; l < DIMENSION; l++) {
+		for(int m = 0; m < DIMENSION; m++) {
+			for(int n = 0; n < DIMENSION; n++) {
+					printf("\033[%dm%c", tetro->color, block(tetro->type[m][l][n])); // show the first row of each tetromino before going to the next lign
+			}
+			printf("	"); // allow to separate each rotation
+		}
+	printf("\033[37m\n"); // turn back the color to white
+	}
+	for(int i = 1; i < DIMENSION + 1; i++){ // allow to print the number of each rotation to 1 to 4
+		printf("%d.	",i);
+	}
+	printf("\n");
+}
+
 void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the grid
 	printf("\nThis is your grid: \n");
 	for(int k = 0; k < TAILLE; k++) { // printf the letter for each column from A to J
@@ -32,11 +51,67 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 	}
 	for(int a = 0; a < TAILLE; a++){
 		for(int b = 0; b < TAILLE; b++){
-			if(b == 0) { // allow to print the first case of each lign
-				printf("\n|%c|", block(tab[a][b]));
+			if(b == 0) { // allow to print the first case of each line
+				switch(tab[a][b]){
+					case 0:
+						printf("\n|\033[%dm%c\033[37m|", 37, block(tab[a][b]));
+						break;
+					case 1:
+						printf("\n|\033[%dm%c\033[37m|", 33, block(tab[a][b]));
+						break;
+					case 2:
+						printf("\n|\033[%dm%c\033[37m|", 36, block(tab[a][b]));
+						break;
+					case 3:
+						printf("\n|\033[%dm%c\033[37m|", 37, block(tab[a][b]));
+						break;
+					case 4:
+						printf("\n|\033[%dm%c\033[37m|", 34, block(tab[a][b]));
+						break;
+					case 5:
+						printf("\n|\033[%dm%c\033[37m|", 35, block(tab[a][b]));
+						break;
+					case 6:
+						printf("\n|\033[%dm%c\033[37m|", 31, block(tab[a][b]));
+						break;
+					case 7:
+						printf("\n|\033[%dm%c\033[37m|", 32, block(tab[a][b]));
+						break;
+					default:
+						printf("\nErreur d'affichage\n");
+						exit(0);
+				}
 			}
 			else{ // printf the rest of the lign
-				printf("%c|", block(tab[a][b]));
+				switch(tab[a][b]){
+					case 0:
+						printf("\033[%dm%c\033[37m|", 37, block(tab[a][b]));
+						break;
+					case 1:
+						printf("\033[%dm%c\033[37m|", 33, block(tab[a][b]));
+						break;
+					case 2:
+						printf("\033[%dm%c\033[37m|", 36, block(tab[a][b]));
+						break;
+					case 3:
+						printf("\033[%dm%c\033[37m|", 37, block(tab[a][b]));
+						break;
+					case 4:
+						printf("\033[%dm%c\033[37m|", 34, block(tab[a][b]));
+						break;
+					case 5:
+						printf("\033[%dm%c\033[37m|", 35, block(tab[a][b]));
+						break;
+					case 6:
+						printf("\033[%dm%c\033[37m|", 31, block(tab[a][b]));
+						break;
+					case 7:
+						printf("\033[%dm%c\033[37m|", 32, block(tab[a][b]));
+						break;
+					default:
+						printf("\nErreur d'affichage\n");
+						exit(0);
+				}
 			}
 		}
 	}
@@ -44,13 +119,19 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 }
 
 int block(int p) { // transform int in char
-	if(p != 1 && p != 0) { // test if the parameter is right
-		printf("\nerror: p must be egal to 1 or 0\n");
+	if(p > 7 || p < 0) { // test if the parameter is right
+		printf("\nerror: p must be between 0 or 7\n");
 		exit(1);
 	}
 	switch(p) {
-		case 0: return(32); break; // transform the 0 in ' '
-		case 1: return(64); break; // transform the 1 in '@'
+		case 0: return(32); // transform the 0 in ' '
+		case 1: return(64); // transform the 1 in '@'
+		case 2: return(64); // transform the 1 in '@'
+		case 3: return(64); // transform the 1 in '@'
+		case 4: return(64); // transform the 1 in '@'
+		case 5: return(64); // transform the 1 in '@'
+		case 6: return(64); // transform the 1 in '@'
+		case 7: return(64); // transform the 1 in '@'
 		default: printf("error transformation \n"); // if there is an error
 			exit(1);
 	}
@@ -155,6 +236,13 @@ void int_random(int* random) { // return a random number to choose a tetromino
 
 void rand_tetro(Tetromino *tetro) {
 	int random;
+	for(int i=0; i<4;i++){
+		for(int j=0;j<4;j++){
+			for(int k=0;k<4;k++){
+				tetro->type[i][j][k]=0;
+			}
+		}
+	}
 	int_random(&random); // pick a random number for a random piece
 	if(random == 0) { // 0 block
 			tetro->color = 33;
@@ -169,7 +257,7 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->type[0][1][0] = 1;
 			tetro->type[0][1][1] = 1;
 
-
+									
 			tetro->type[1][0][0] = 1; // 0 block & rotation 1
 			tetro->type[1][0][1] = 1;
 			tetro->type[1][1][0] = 1;
@@ -197,27 +285,27 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=1;
 			tetro->thickness[3]=4;
 	
-			tetro->type[0][0][0] = 1; // I block & rotation 0
-			tetro->type[0][1][0] = 1;
-			tetro->type[0][2][0] = 1;
-			tetro->type[0][3][0] = 1;
+			tetro->type[0][0][0] = 2; // I block & rotation 0
+			tetro->type[0][1][0] = 2;
+			tetro->type[0][2][0] = 2;
+			tetro->type[0][3][0] = 2;
 
 
-			tetro->type[1][0][0] = 1; // I block & rotation 1
-			tetro->type[1][0][1] = 1;
-			tetro->type[1][0][2] = 1;
-			tetro->type[1][0][3] = 1;
+			tetro->type[1][0][0] = 2; // I block & rotation 1
+			tetro->type[1][0][1] = 2;
+			tetro->type[1][0][2] = 2;
+			tetro->type[1][0][3] = 2;
 
-			tetro->type[2][0][0] = 1; // I block & rotation 2
-			tetro->type[2][1][0] = 1;
-			tetro->type[2][2][0] = 1;
-			tetro->type[2][3][0] = 1;
+			tetro->type[2][0][0] = 2; // I block & rotation 2
+			tetro->type[2][1][0] = 2;
+			tetro->type[2][2][0] = 2;
+			tetro->type[2][3][0] = 2;
 
 
-			tetro->type[3][0][0] = 1; // I block & rotation 3
-			tetro->type[3][0][1] = 1;
-			tetro->type[3][0][2] = 1;
-			tetro->type[3][0][3] = 1;
+			tetro->type[3][0][0] = 2; // I block & rotation 3
+			tetro->type[3][0][1] = 2;
+			tetro->type[3][0][2] = 2;
+			tetro->type[3][0][3] = 2;
 			
 	}
 
@@ -231,28 +319,28 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=2;
 			tetro->thickness[3]=3;
 
-			tetro->type[0][0][0] = 1; // L block & rotation 0
-			tetro->type[0][1][0] = 1;
-			tetro->type[0][2][0] = 1;
-			tetro->type[0][2][1] = 1;
+			tetro->type[0][0][0] = 3; // L block & rotation 0
+			tetro->type[0][1][0] = 3;
+			tetro->type[0][2][0] = 3;
+			tetro->type[0][2][1] = 3;
 
 
-			tetro->type[1][0][2] = 1; // L block & rotation 1
-			tetro->type[1][1][0] = 1;
-			tetro->type[1][1][1] = 1;
-			tetro->type[1][1][2] = 1;
+			tetro->type[1][0][2] = 3; // L block & rotation 1
+			tetro->type[1][1][0] = 3;
+			tetro->type[1][1][1] = 3;
+			tetro->type[1][1][2] = 3;
 		
 
-			tetro->type[2][0][0] = 1; // L block & rotation 2
-			tetro->type[2][0][1] = 1;
-			tetro->type[2][1][1] = 1;
-			tetro->type[2][2][1] = 1;
+			tetro->type[2][0][0] = 3; // L block & rotation 2
+			tetro->type[2][0][1] = 3;
+			tetro->type[2][1][1] = 3;
+			tetro->type[2][2][1] = 3;
 
 
-			tetro->type[3][0][0] = 1; // L block & rotation 3
-			tetro->type[3][0][1] = 1;
-			tetro->type[3][0][2] = 1;
-			tetro->type[3][1][0] = 1;
+			tetro->type[3][0][0] = 3; // L block & rotation 3
+			tetro->type[3][0][1] = 3;
+			tetro->type[3][0][2] = 3;
+			tetro->type[3][1][0] = 3;
 	}
 // ------------------------------------------------------------------------------
 
@@ -264,28 +352,28 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=3;
 			tetro->thickness[3]=2;
 
-			tetro->type[0][0][0] = 1; // J block & rotation 0
-			tetro->type[0][0][1] = 1;
-			tetro->type[0][1][0] = 1;
-			tetro->type[0][2][0] = 1;
+			tetro->type[0][0][0] = 4; // J block & rotation 0
+			tetro->type[0][0][1] = 4;
+			tetro->type[0][1][0] = 4;
+			tetro->type[0][2][0] = 4;
 
 
-			tetro->type[1][0][0] = 1; // J block & rotation 1
-			tetro->type[1][1][0] = 1;
-			tetro->type[1][1][1] = 1;
-			tetro->type[1][1][2] = 1;
+			tetro->type[1][0][0] = 4; // J block & rotation 1
+			tetro->type[1][1][0] = 4;
+			tetro->type[1][1][1] = 4;
+			tetro->type[1][1][2] = 4;
 
 
-			tetro->type[2][0][0] = 1; // J block & rotation 2
-			tetro->type[2][0][1] = 1;
-			tetro->type[2][0][2] = 1;
-			tetro->type[2][1][2] = 1;
+			tetro->type[2][0][0] = 4; // J block & rotation 2
+			tetro->type[2][0][1] = 4;
+			tetro->type[2][0][2] = 4;
+			tetro->type[2][1][2] = 4;
 
 
-			tetro->type[3][0][1] = 1; // J block & rotation 3
-			tetro->type[3][1][1] = 1;
-			tetro->type[3][2][0] = 1;
-			tetro->type[3][2][1] = 1;
+			tetro->type[3][0][1] = 4; // J block & rotation 3
+			tetro->type[3][1][1] = 4;
+			tetro->type[3][2][0] = 4;
+			tetro->type[3][2][1] = 4;
 	}
 
 // ------------------------------------------------------------------------------
@@ -298,28 +386,28 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=3;
 			tetro->thickness[3]=2;
 
-			tetro->type[0][0][1] = 1; // T block & rotation 0
-			tetro->type[0][1][0] = 1;
-			tetro->type[0][1][1] = 1;
-			tetro->type[0][1][2] = 1;
+			tetro->type[0][0][1] = 5; // T block & rotation 0
+			tetro->type[0][1][0] = 5;
+			tetro->type[0][1][1] = 5;
+			tetro->type[0][1][2] = 5;
 
 
-			tetro->type[1][0][0] = 1; // T block & rotation 1
-			tetro->type[1][1][0] = 1;
-			tetro->type[1][1][1] = 1;
-			tetro->type[1][2][0] = 1;
+			tetro->type[1][0][0] = 5; // T block & rotation 1
+			tetro->type[1][1][0] = 5;
+			tetro->type[1][1][1] = 5;
+			tetro->type[1][2][0] = 5;
 
 
-			tetro->type[2][0][0] = 1; // T block & rotation 2
-			tetro->type[2][0][1] = 1;
-			tetro->type[2][0][2] = 1;
-			tetro->type[2][1][1] = 1;
+			tetro->type[2][0][0] = 5; // T block & rotation 2
+			tetro->type[2][0][1] = 5;
+			tetro->type[2][0][2] = 5;
+			tetro->type[2][1][1] = 5;
 
 
-			tetro->type[3][0][1] = 1; // T block & rotation 3
-			tetro->type[3][1][0] = 1;
-			tetro->type[3][1][1] = 1;
-			tetro->type[3][2][1] = 1;
+			tetro->type[3][0][1] = 5; // T block & rotation 3
+			tetro->type[3][1][0] = 5;
+			tetro->type[3][1][1] = 5;
+			tetro->type[3][2][1] = 5;
 	}
 
 // ------------------------------------------------------------------------------
@@ -332,28 +420,28 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=3;
 			tetro->thickness[3]=2;
 		
-			tetro->type[0][0][0] = 1; // Z block & rotation 0
-			tetro->type[0][0][1] = 1;
-			tetro->type[0][1][1] = 1;
-			tetro->type[0][1][2] = 1;
+			tetro->type[0][0][0] = 6; // Z block & rotation 0
+			tetro->type[0][0][1] = 6;
+			tetro->type[0][1][1] = 6;
+			tetro->type[0][1][2] = 6;
 
 
-			tetro->type[1][0][1] = 1; // Z block & rotation 1
-			tetro->type[1][1][0] = 1;
-			tetro->type[1][1][1] = 1;
-			tetro->type[1][2][0] = 1;
+			tetro->type[1][0][1] = 6; // Z block & rotation 1
+			tetro->type[1][1][0] = 6;
+			tetro->type[1][1][1] = 6;
+			tetro->type[1][2][0] = 6;
 
 
-			tetro->type[2][0][0] = 1; // Z block & rotation 2
-			tetro->type[2][0][1] = 1;
-			tetro->type[2][1][1] = 1;
-			tetro->type[2][1][2] = 1;
+			tetro->type[2][0][0] = 6; // Z block & rotation 2
+			tetro->type[2][0][1] = 6;
+			tetro->type[2][1][1] = 6;
+			tetro->type[2][1][2] = 6;
 
 
-			tetro->type[3][0][1] = 1; // Z block & rotation 3
-			tetro->type[3][1][0] = 1;
-			tetro->type[3][1][1] = 1;
-			tetro->type[3][2][0] = 1;			
+			tetro->type[3][0][1] = 6; // Z block & rotation 3
+			tetro->type[3][1][0] = 6;
+			tetro->type[3][1][1] = 6;
+			tetro->type[3][2][0] = 6;			
 	}
 
 // ------------------------------------------------------------------------------
@@ -366,28 +454,28 @@ void rand_tetro(Tetromino *tetro) {
 			tetro->thickness[2]=3;
 			tetro->thickness[3]=2;
 		
-			tetro->type[0][0][1] = 1; // S block & rotation 0
-			tetro->type[0][0][2] = 1;
-			tetro->type[0][1][0] = 1;
-			tetro->type[0][1][1] = 1;
+			tetro->type[0][0][1] = 7; // S block & rotation 0
+			tetro->type[0][0][2] = 7;
+			tetro->type[0][1][0] = 7;
+			tetro->type[0][1][1] = 7;
 
 
-			tetro->type[1][0][0] = 1; // S block & rotation 1
-			tetro->type[1][1][0] = 1;
-			tetro->type[1][1][1] = 1;
-			tetro->type[1][2][1] = 1;
+			tetro->type[1][0][0] = 7; // S block & rotation 1
+			tetro->type[1][1][0] = 7;
+			tetro->type[1][1][1] = 7;
+			tetro->type[1][2][1] = 7;
 
 
-			tetro->type[2][0][1] = 1; // S block & rotation 2
-			tetro->type[2][0][2] = 1;
-			tetro->type[2][1][0] = 1;
-			tetro->type[2][1][1] = 1;
+			tetro->type[2][0][1] = 7; // S block & rotation 2
+			tetro->type[2][0][2] = 7;
+			tetro->type[2][1][0] = 7;
+			tetro->type[2][1][1] = 7;
 
 
-			tetro->type[3][0][0] = 1; // S block & rotation 3
-			tetro->type[3][1][0] = 1;
-			tetro->type[3][1][1] = 1;
-			tetro->type[3][2][1] = 1;
+			tetro->type[3][0][0] = 7; // S block & rotation 3
+			tetro->type[3][1][0] = 7;
+			tetro->type[3][1][1] = 7;
+			tetro->type[3][2][1] = 7;
 	}
 
 	else {
@@ -406,6 +494,7 @@ void game() { // allow to play the game
 	}
 	end_game(int score);
 }
+
 */
 /*
 int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
@@ -449,22 +538,8 @@ void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verific
 	}
 }*/
 
-void show_tetro(Tetromino *tetro) { // show the tetrimoni and its rotation
-	printf("This is your block with its orientation:\n");
-	for(int l = 0; l < DIMENSION; l++) {
-		for(int m = 0; m < DIMENSION; m++) {
-			for(int n = 0; n < DIMENSION; n++) {
-					printf("\033[%dm%c", tetro->color, block(tetro->type[m][l][n])); // show the first row of each tetromino before going to the next lign
-			}
-			printf("	"); // allow to separate each rotation
-		}
-	printf("\033[37m\n"); // turn back the color to white
-	}
-	for(int i = 1; i < DIMENSION + 1; i++){ // allow to print the number of each rotation to 1 to 4
-		printf("%d.	",i);
-	}
-	printf("\n");
-}
+
+
 
 void memory_block(Tetromino *tetro) { // memory allocation of the tetromino
 	tetro->type = malloc(ROTATION * sizeof(int)); // allocation of the first tab
@@ -488,7 +563,7 @@ void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score) {// place a blo
 
 void verifgameover(int tab[TAILLE][TAILLE],int score){
 	for(int i=0; i<TAILLE;i++){
-		if(tab[0][i]==1){
+		if(tab[0][i]!=0){
 			end_game(score);
 		}
 	}
@@ -533,17 +608,17 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 	int blocked =0;
 	int thickness = tetro->thickness[rotation];
 	for(int z=0;z<TAILLE;z++){
-		for(int y=0;y<TAILLE;y++){
+		for(int y=0;y<TAILLE;y++){  // initialyse the calc
 			calc[z][y]=0;
 		}
 	}
-	for(int l=0;l<4;l++){ // fais chacune des lignes 
-		for(int m=0;m<4;m++){//chacune des cases
+	for(int l=0;l<4;l++){ // for every line 
+		for(int m=0;m<4;m++){//for every cases
 			if(column>9-tetro->thickness[rotation]-right_gap+1){ 
 				calc[l][6+m]=tetro->type[rotation][l][m];	
 				constraint = 1;  				
 			}							
-											
+									// put all blocks to G if it goes out of the tab		
 			else{
 				calc[l][column+m]=tetro->type[rotation][l][m];
 			}	
@@ -553,7 +628,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 		if(thickness==4){
 			for(int i=0;i<TAILLE;i++){
 				for(int j=9;j>-1;j--){
-					if(calc[i][j]==1){
+					if(calc[i][j]!=0){
 						calc[i][j]=calc[i][j];
 					}
 					
@@ -564,12 +639,12 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 			for(int i=0;i<TAILLE;i++){
 				for(int j=9;j>-1;j--){
 					if(column==6){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j]=calc[i][j];
 						}
 					}
 					else if(column ==7||column==8||column==9){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+1]=calc[i][j];
 							calc[i][j]=0;
 						}
@@ -585,18 +660,18 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 			for(int i=0;i<TAILLE;i++){
 				for(int j=9;j>0;j--){
 					if(column==6){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j]=calc[i][j];
 						}
 					}
 					else if(column==7){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+1]=calc[i][j];
 							calc[i][j]=0;
 						}
 					}
 					else if(column==8||column==9){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+2]=calc[i][j];
 							calc[i][j]=0;
 						}
@@ -612,24 +687,24 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 			for(int i=0;i<TAILLE;i++){
 				for(int j=9;j>-1;j--){
 					if(column==6){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j]=calc[i][j];
 						}
 					}
 					else if(column==7){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+1]=calc[i][j];
 							calc[i][j]=0;
 						}
 					}
 					else if(column==8){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+2]=calc[i][j];
 							calc[i][j]=0;
 						}
 					}
 					else if(column == 9){
-						if(calc[i][j]==1){
+						if(calc[i][j]!=0){
 							calc[i][j+3]=calc[i][j];
 							calc[i][j]=0;
 						}
@@ -649,12 +724,12 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 	while(blocked!=1){
 		for(int b=9;b>=0;b--){
 			for(int c=0;c<TAILLE;c++){
-				if((calc[b][c]==1 && tab[b+1][c]==1)||(calc[b][c+1]==1 && tab[b+1][c+1]==1)||(calc[b][c+2]==1 && tab[b+1][c+2]==1)||(calc[b][c+3]==1 && tab[b+1][c+3]==1)||(calc[b-1][c]==1 && tab[b][c]==1)||(calc[b-1][c+1]==1 && tab[b][c+1]==1)||(calc[b-1][c+2]==1 && tab[b][c+2]==1)||(calc[b-1][c+3]==1 && tab[b][c+3]==1)){
+				if((calc[b][c]!=0 && tab[b+1][c]!=0)||(calc[b][c+1]!=0 && tab[b+1][c+1]!=0)||(calc[b][c+2]!=0 && tab[b+1][c+2]!=0)||(calc[b][c+3]!=0 && tab[b+1][c+3]!=0)||(calc[b-1][c]!=0 && tab[b][c]!=0)||(calc[b-1][c+1]!=0 && tab[b][c+1]!=0)||(calc[b-1][c+2]!=0 && tab[b][c+2]!=0)||(calc[b-1][c+3]!=0 && tab[b][c+3]!=0)){
 				
 					calcimpression(tab,calc);
 					return;
 				}
-				else if(calc[b][c]==1 && b==8){
+				else if(calc[b][c]!=0 && b==8){
 					fall(calc);
 					calcimpression(tab,calc);
 					return;
@@ -671,7 +746,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
 	for(int g=0;g<TAILLE;g++){
 		for(int h = 0;h<TAILLE;h++){
-			if(calc[g][h]==1){
+			if(calc[g][h]!=0){
 				tab[g][h]=calc[g][h]; //place the bloc at the bottom of the real tab
 			}
 		}
@@ -682,8 +757,8 @@ void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
 void fall(int calc[TAILLE][TAILLE]){
 	for(int i=9; i>=0;i--){
 		for(int j=0;j<TAILLE;j++){
-			if(calc[i][j]==1){
-				calc[1+i][j]=1;
+			if(calc[i][j]!=0){
+				calc[1+i][j]=calc[i][j];
 				calc[i][j]=0;
 			}
 		}
