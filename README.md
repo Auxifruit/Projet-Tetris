@@ -32,7 +32,7 @@ Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1
   int difficulty();
 ```
 
-Vous devrez ensuite saisir l'orientation du tétromino puis la colonne sur la quelle vous voulez le placer grâce à la fonction:
+Vous devrez ensuite saisir l'orientation du tétromino puis la colonne sur laquelle vous voulez le placer grâce à la fonction:
 ```c
   void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score, int level);
 ```
@@ -40,7 +40,7 @@ Le bloc est enfin placer automatiquement dans le tableau, voici un aperçu du t�
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID01.png "Exemple tableau")
 
-Si une ligne est remplie entièrement, elle sera supprimé pour laisser sa place aux lignes superieur grâce à la fonction:
+Si une ligne est remplie entièrement, elle sera supprimé pour laisser place aux lignes au-dessus grâce à la fonction:
 ```c
   void linedelete(int tab[TAILLE][TAILLE], int n, int score);
 ```
