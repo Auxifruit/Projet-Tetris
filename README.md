@@ -38,7 +38,7 @@ Vous devrez ensuite saisir la colonne sur laquelle vous voulez placer votre bloc
 ```
 Le bloc est enfin placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 1:
 
-![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID1.png "Exemple tableau")
+![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID01.png "Exemple tableau")
 
 Si une ligne est remplie entièrement, elle sera supprimé pour laisser sa place aux lignes superieur grâce à la fonction:
 ```c
