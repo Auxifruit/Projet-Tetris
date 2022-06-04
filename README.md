@@ -34,7 +34,7 @@ Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1
 
 Vous devrez ensuite saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
 ```c
-  void place(int tab[TAILLE][TAILLE], Tetromoni* tetro, int score, int level);
+  void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score, int level);
 ```
 Le bloc est enfin placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 1:
 
