@@ -495,39 +495,47 @@ void game() { // allow to play the game
 	end_game(int score);
 }
 
-*/
-/*
-int verification(int tab[TAILLE][TAILLE]){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
-	printf("\n the verification is loading... \n");
-	int n;
-        for(int i=0; i<TAILLE; i++){ //detect for every line from 0 to 10
-		if(tab[i][0]==1){ // detect the first case everytime to gain time analyse the whole table
-			printf("The line n°%d begin with an @ : \n", i+1);
+
+void verification(int tab[TAILLE][TAILLE], int score){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
+	int n[TAILLE];
+	int count = 0;
+        for(int i=9; i>0; i--){ //detect for every line from 9 to 0
+        	count =0;
+		if(tab[i][0]!=0){ // detect the first case everytime to gain time analyse the whole table
 			for(int j=0; j<TAILLE;j++){ 
-				n = i; // begin with a hypothesis that the line is full, then change it if it is not full
-				if(tab[i][j]!=1){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
-					n=20; // change the value of the line to 20 if it is not full
+				n[i] = i; // begin with a hypothesis that the line is full, then change it if it is not full
+				if(tab[i][j]==0){ //detect for every case in the line if it is equal to 0 and else it goes to the next line
+					n[i]=-10; // change the value of the line to 20 if it is not full
 					break;
                     	        }
-                   	}
-                   	if(n!=20){
-				printf("The line return %d\n", i);
-                   		return i; //if the code detect a full line, it returns the line
+                    	        else if (count == 10){ // if the line is full add the line to the tab
+                    	        	n[i]=i;
+                    	        	printf("%d|", n[i]);
+                    	        }
+                    	        else{
+                    	        	count = count++;
+                    	        }
                    	}
         	}  
 	}
-	return 20;
+	printf("\n");
+	for(int i=0;i<TAILLE;i++){	
+		printf("|%d", n[i]);
+	}
+	printf("TESTETSTETETETETTETETETETETETETETETET");
+	linedelete(tab,n,score);
 }
-void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verification, useful to delete the line and replace by the line on the bottom
-	printf("The delete line function is loading... \n");
+void linedelete(int tab[TAILLE][TAILLE], int n[TAILLE], int score){ // after the verification, useful to delete the line and replace by the line on the bottom
+	int line=0;
 	for(int m = 0; m<10; m++){
-		if(n!=20){
+		line=n[m];
+		if(line!=-10){
 			for(int j=0; j<10; j++){ 	// delete the line n with all the 1's to a line with 0's
-				tab[n][j] = 0;
+				tab[line][j] = 0;
 			}															
-			for(int i=n; i>0; i--){ 	// replace the line with all the 0's to the line on the bottom                                             
-				for(int k=0; k<10; k++){
-					tab[i][k] = tab[i-1][k];
+			for(int i=line; i>0; i--){ 	// make every line fall                                             
+				for(int k=0; k<10; k++){ // replace every cases
+					tab[i][k] = tab[line-1][k];
 				}
 			}
 			for(int l=0;l<10; l++){ // the first line being duplicated, we have to delete it into a line with 0's
@@ -536,9 +544,9 @@ void linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verific
 			score = score + 100;
 		}
 	}
-}*/
+}
 
-
+*/
 
 
 void memory_block(Tetromino *tetro) { // memory allocation of the tetromino
@@ -586,14 +594,17 @@ void choose_rotation(int* rotation) {
 
 void choose_column(char* column) {
 	int sc; // will be use to check the scanf
+	printf("\nchoose the column between A and J\n");
 	do { // do while loop to have the right value for the column
-		printf("\nchoose the column between A and J\n");
+		if(*column!=-10){
+			*column=-10;
+		}
 		sc = scanf("%c", column); // test if the scanf worked
 		if(sc != 1) {
 			printf("error scanf\n");
 			exit(1);
 		}
-		if(*column < 65 || *column > 74) {
+		else if(*column < 65 || *column > 74) {
 			printf("please choose a letter between A and J\n");
 		}
 	} while(*column < 65 || *column > 74);
