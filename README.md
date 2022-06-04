@@ -27,17 +27,32 @@ Pour lancer le programme:
 ```
 ### JOUABILITÉ
 
-Vous devez saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
+Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1 et 3. Le niveau déterminera le temps que vous aurez pour jouer, 7 secondes pour le niveau 1, 5 secondes pour le niveau 2 et 3 secondes pour le niveau 3. Ce choix est fait grâce à la fonction suivante:
+```c
+  int difficulty();
+```
+
+Vous devrez ensuite saisir la colonne sur laquelle vous voulez placer votre bloc et son orientation grâce à la fonction:
 ```c
   void place(int tab[TAILLE][TAILLE], Tetromoni* tetro, int score, int level);
 ```
-Le bloc est ensuite placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 0:
+Le bloc est enfin placer automatiquement dans le tableau, voici un aperçu du tétromino S placé dans la colonne B avec comme orientation 1:
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GRID1.png "Exemple tableau")
 
-Le but du jeu est donc de compléter des lignes pour augmenter son score jusqu'à qu'on ne puisse plus placer de blocs par faute de place, c'est-à-dire qu'on ne peut plus rien placer.
+Si une ligne est remplie entièrement, elle sera supprimé pour laisser sa place aux lignes superieur grâce à la fonction:
+```c
+  void linedelete(int tab[TAILLE][TAILLE], int n, int score);
+```
 
-À la fin de la partie le score du joueur est enregistré dans un fichier texte avec les scores des autres joueurs, exemple ci-dessous:
+Le but du jeu est donc de compléter des lignes pour augmenter son score, il y a game over quand une colonne est remplie entièrement.
+
+À la fin de la partie le score du joueur est enregistré dans un fichier texte avec les scores des autres joueurs, grâce à la fonction:
+```c
+  void end_game(int score);
+```
+
+Exemple ci-dessous:
 
 ![alt text](https://github.com/Auxifruit/tetris-projet/blob/image/GAMEOVER.png "Exemple game over")
 
