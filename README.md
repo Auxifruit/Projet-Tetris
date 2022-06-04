@@ -17,7 +17,7 @@ Voici à quoi ressemblera l'interface du jeu:
 
 ## UTILISATION
 
-Pour compilier le programme:
+Pour compilier le programme, mettez tous les fichiers du github dans un même répertoire. Ensuite utiliser la commande:
 ```c
   $ make
 ```
