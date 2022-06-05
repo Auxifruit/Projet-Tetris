@@ -46,6 +46,7 @@ void end_game(int score) { // when the game is over
 		exit(0);
 	} 
 	printf("\n\nGAME OVER ! \n");
+	printf("BETTER LUCK NEXT TIME!\n");
 	file = fopen("HIGH_SCORE.txt","r+"); // open the file which countain the player's score
 	if(file == NULL) { // check if the file was open
 		printf("opening file error \n");
