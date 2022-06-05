@@ -12,25 +12,30 @@ printf("\033[37\nm");
 }
 
 int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
-	int choice; // will countain the level of diffuculty choose by the user
+	char choice; // will countain the level of diffuculty choose by the user
 	int sc = 0; // will be use to check the scanf
 	printf("\n");
 	printf("choose your difficulty: \n");
 	printf("level 1 (10 seconds) / level 2 (7 seconds) / level 3 (5 seconds) \n");
-	do { // do while loop to have the right value for the difficulty
-		sc = scanf("%d", &choice);
-		if(sc != 1) { // check if there's an error
-			printf("scanf error: please enter a number \n");
-			exit(2);
+	sc = scanf("%c", &choice);
+	if(sc != 1) { // check if there's an error
+		printf("scanf error: please enter a number \n");
+		exit(2);
+	}
+	if(choice < 49 || choice > 51) {
+		printf("\nplease choose a level between 1 and 3\n");
+		while(choice < 49 || choice > 51) {
+			sc = scanf("%c", &choix); // test if the scanf worked
+			if(sc != 1) {
+				printf("error scanf\n");
+				exit(1);
+			}
 		}
-		if(choice != 1 && choice != 2 && choice != 3) {
-			printf("please choose a valid level !\n");
-		}
-	} while(choice != 1 && choice != 2 && choice != 3);
+	}
 	switch(choice) {
-		case 1: return(10);
-		case 2: return(7);
-		case 3: return(5);
+		case 49: return(10);
+		case 50: return(7);
+		case 51: return(5);
 		default: printf("error value \n");
 			exit(1);
 	}
