@@ -20,6 +20,8 @@ Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1
 
 	int difficulty();
 
+ATTENTION: si vous sasissez une lettre à la place d'un chiffre, cela sera considéré comme une erreur majeure et mettra fin au programme
+
 Vous devrez ensuite saisir la rotation du tétromino en saisissant une valeur entre 1 et 4 puis la colonne en saisissant une lettre entre A et J sur laquelle vous voulez le placer, sachant que l'origine du bloc est tout à gauche, le tout est fait grâce à la fonction:
 
 	void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int score, int level);
