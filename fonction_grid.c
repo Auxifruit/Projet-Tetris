@@ -141,18 +141,18 @@ void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int level) {// place a blo
 
 void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILLE]){
 	int calc[TAILLE][TAILLE];
-	int right_gap= 4-tetro->thickness[rotation];
+	int right_gap= 4-tetro->thickness[rotation]; //it is the number of 0 at the right side of the block's tab
 	int constraint=0; // act like a boolean
-	int blocked =0;
+	int blocked =0;//act like a boolean too
 	int thickness = tetro->thickness[rotation];
 	for(int z=0;z<TAILLE;z++){
 		for(int y=0;y<TAILLE;y++){
-			calc[z][y]=0;
+			calc[z][y]=0;	//initialyse the calc
 		}
 	}
-	for(int l=0;l<4;l++){ // fais chacune des lignes 
-		for(int m=0;m<4;m++){//chacune des cases
-			if(column>9-tetro->thickness[rotation]-right_gap+1){ 
+	for(int l=0;l<4;l++){ 
+		for(int m=0;m<4;m++){
+			if(column>9-tetro->thickness[rotation]-right_gap+1){ // if the column choosen is "G,H,I or J" place the tetrimino on the G column
 				calc[l][6+m]=tetro->type[rotation][l][m];	
 				constraint = 1;  				
 			}							
@@ -162,12 +162,12 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 			}	
 		}			
 	}
-	if(constraint==1){  	
+	if(constraint==1){  	// place the tetrimino on the right column for every cases
 		if(thickness==4){
 			for(int i=0;i<TAILLE;i++){
 				for(int j=9;j>-1;j--){
 					if(calc[i][j]!=0){
-						calc[i][j]=calc[i][j];
+						calc[i][j]=calc[i][j]; // the column "G,H,I,J" for a 4 block tetro are the same
 					}
 					
 				}
@@ -181,7 +181,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 							calc[i][j]=calc[i][j];
 						}
 					}
-					else if(column == 7 || column == 8 || column == 9){
+					else if(column == 7 || column == 8 || column == 9){ // the column "H,I,J" for a 4 block tetro are the same so the block is shifted by one on the right
 						if(calc[i][j]!=0){
 							calc[i][j+1]=calc[i][j];
 							calc[i][j]=0;
@@ -210,7 +210,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 					}
 					else if(column == 8 || column == 9){
 						if(calc[i][j] != 0){
-							calc[i][j+2] = calc[i][j];
+							calc[i][j+2] = calc[i][j];// the column "I,J" for a 4 block tetro are the same so the block is shifted by one on the right
 							calc[i][j] = 0;
 						}
 					}
@@ -221,7 +221,7 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 				}
 			}
 		}
-		else if(thickness == 1){
+		else if(thickness == 1){ //the thickness 1 allow the tetrimino to be placed on every column
 			for(int i = 0; i < TAILLE; i++){
 				for(int j = 9; j > -1; j--){
 					if(column == 6){
@@ -262,30 +262,29 @@ void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILL
 	while(blocked != 1){
 		for(int b = 0; b < TAILLE; b++){
 			for(int c = 0; c < TAILLE; c++){
-				if((calc[b][c] !=0 && tab[b+1][c]!=0) /*|| (calc[b-1][c] != 0 && tab[b][c] != 0) || ((calc[b+1][c] != 0 && tab[b][c] !=0 ))*/){
-					printf("lololo\n");
+				if(calc[b][c] !=0 && tab[b+1][c]!=0){	//if on the calc, the block is blocked by a block on the tab, the calc is added to the tab
 					calcimpression(tab,calc);
 					return;
 				}
-				else if(calc[b][c] != 0 && b == 8){
+				else if(calc[b][c] != 0 && b == 8){	//if the block on the calc is at the bottom, the calc is added to the tab
 					fall(calc);
 					calcimpression(tab,calc);
 					return;
 				}
 			}
 		}
-		fall(calc);
+		fall(calc); //the block on the calc fall by one line
 	}
 	calcimpression(tab,calc);
 }
 
 
 
-void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
+void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){ //add the calc to the tab
 	for(int g = 0;g < TAILLE; g++){
 		for(int h = 0;h < TAILLE; h++){
-			if(calc[g][h]!=0){
-				tab[g][h]=calc[g][h]; //place the bloc at the bottom of the real tab
+			if(calc[g][h]!=0){ //only add the block from the calc to the tab, not the O's
+				tab[g][h]=calc[g][h]; //place the bloc on the tab
 			}
 		}
 	}
@@ -294,9 +293,9 @@ void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
 void fall(int calc[TAILLE][TAILLE]){
 	for(int i = 9; i >= 0; i--){
 		for(int j = 0; j < TAILLE; j++){
-			if(calc[i][j] != 0){
+			if(calc[i][j] != 0){ // put all block one line lower, not the 0's
 				calc[1+i][j] = calc[i][j];
-				calc[i][j] = 0;
+				calc[i][j] = 0; //the case is duplicated so we have to delete it
 			}
 		}
 	}
