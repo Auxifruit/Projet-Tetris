@@ -18,10 +18,10 @@ void rand_tetro(Tetromino *tetro) {
 	if(random == 0) { // 0 block
 			tetro->color = 33; // set the color to yellow
 		
-			tetro->thickness[0]= 2;
-			tetro->thickness[1]= 2;
-			tetro->thickness[2]= 2;
-			tetro->thickness[3]= 2;
+			tetro->thickness[0] = 2; // set the width to 2 for the first rotation
+			tetro->thickness[1] = 2; // set the width to 2 for the second rotation
+			tetro->thickness[2] = 2; // set the width to 2 for the third rotation
+			tetro->thickness[3] = 2; // set the width to 2 for the fourth rotation
 			
 			tetro->type[0][0][0] = 1; // 0 block & rotation 0
 			tetro->type[0][0][1] = 1;
@@ -51,10 +51,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 1) { // I block
 			tetro->color = 36; // set the color to cyan
 		
-			tetro->thickness[0]=1;
-			tetro->thickness[1]=4;
-			tetro->thickness[2]=1;
-			tetro->thickness[3]=4;
+			tetro->thickness[0] = 1; // set the width to 1 for the first rotation
+			tetro->thickness[1] = 4; // set the width to 4 for the second rotation
+			tetro->thickness[2] = 1; // set the width to 1 for the third rotation
+			tetro->thickness[3] = 4; // set the width to 4 for the fourth rotation
 	
 			tetro->type[0][0][0] = 2; // I block & rotation 0
 			tetro->type[0][1][0] = 2;
@@ -85,10 +85,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 2) { // L block
 			tetro->color = 37; // set the color to white
 		
-			tetro->thickness[0]=2;
-			tetro->thickness[1]=3;
-			tetro->thickness[2]=2;
-			tetro->thickness[3]=3;
+			tetro->thickness[0] = 2; // set the width to 2 for the first rotation
+			tetro->thickness[1] = 3; // set the width to 3 for the seconde rotation
+			tetro->thickness[2] = 2; // set the width to 2 for the third rotation
+			tetro->thickness[3] = 3; // set the width to 3 for the fourth rotation
 
 			tetro->type[0][0][0] = 3; // L block & rotation 0
 			tetro->type[0][1][0] = 3;
@@ -118,10 +118,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 3) { // J block
 			tetro->color = 34; // set the color to blue
 		
-			tetro->thickness[0]=2;
-			tetro->thickness[1]=3;
-			tetro->thickness[2]=3;
-			tetro->thickness[3]=2;
+			tetro->thickness[0] = 2; // set the width to 2 for the first rotation
+			tetro->thickness[1] = 3; // set the width to 3 for the second rotation
+			tetro->thickness[2] = 3; // set the width to 2 for the third rotation
+			tetro->thickness[3] = 2; // set the width to 3 for the fourth rotation
 
 			tetro->type[0][0][0] = 4; // J block & rotation 0
 			tetro->type[0][0][1] = 4;
@@ -152,10 +152,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 4) { // T block
 			tetro->color = 35; // set the color to magenta
 		
-			tetro->thickness[0]=3;
-			tetro->thickness[1]=2;
-			tetro->thickness[2]=3;
-			tetro->thickness[3]=2;
+			tetro->thickness[0] = 3; // set the width to 3 for the first rotation
+			tetro->thickness[1] = 2; // set the width to 2 for the second rotation
+			tetro->thickness[2] = 3; // set the width to 3 for the thid rotation
+			tetro->thickness[3] = 2; // set the width to 2 for the fourth rotation
 
 			tetro->type[0][0][1] = 5; // T block & rotation 0
 			tetro->type[0][1][0] = 5;
@@ -186,10 +186,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 5) { // Z block
 			tetro->color = 31; // set the color to red
 
-			tetro->thickness[0]=3;
-			tetro->thickness[1]=2;
-			tetro->thickness[2]=3;
-			tetro->thickness[3]=2;
+			tetro->thickness[0] = 3; // set the width to 3 for the first rotation
+			tetro->thickness[1] = 2; // set the width to 2 for the second rotation
+			tetro->thickness[2] = 3; // set the width to 3 for the third rotation
+			tetro->thickness[3] = 2; // set the width to 2 for the fourth rotation
 		
 			tetro->type[0][0][0] = 6; // Z block & rotation 0
 			tetro->type[0][0][1] = 6;
@@ -220,10 +220,10 @@ void rand_tetro(Tetromino *tetro) {
 	else if(random == 6) {// S block
 			tetro->color = 32; // set the color to green
 
-			tetro->thickness[0]=3;
-			tetro->thickness[1]=2;
-			tetro->thickness[2]=3;
-			tetro->thickness[3]=2;
+			tetro->thickness[0] = 3; // set the width to 3 for the first rotation
+			tetro->thickness[1] = 2; // set the width to 2 for the seconde rotation
+			tetro->thickness[2] = 3; // set the width to 3 for the thrid rotation
+			tetro->thickness[3] = 2; // set the width to 2 for the fourth rotation
 		
 			tetro->type[0][0][1] = 7; // S block & rotation 0
 			tetro->type[0][0][2] = 7;
