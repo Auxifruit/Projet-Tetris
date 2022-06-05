@@ -12,30 +12,23 @@ printf("\033[37\nm");
 }
 
 int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy to hard
-	char choice; // will countain the level of diffuculty choose by the user
-	int sc = 0; // will be use to check the scanf
+	int choice; // will countain the level of diffuculty choose by the user
 	printf("\n");
 	printf("choose your difficulty: \n");
 	printf("level 1 (10 seconds) / level 2 (7 seconds) / level 3 (5 seconds) \n");
-	sc = scanf("%c", &choice);
-	if(sc != 1) { // check if there's an error
-		printf("scanf error: please enter a number \n");
-		exit(2);
-	}
-	if(choice < 49 || choice > 51) {
-		printf("\nplease choose a level between 1 and 3\n");
-		while(choice < 49 || choice > 51) {
-			sc = scanf("%c", &choice); // test if the scanf worked
-			if(sc != 1) {
-				printf("error scanf\n");
-				exit(1);
-			}
+	do { // do while loop to have the right value for the difficulty
+		if(scanf("%d", &choice) == 0) { // check if there's an error
+			printf("scanf error: please enter number \n");
+			exit(2);
 		}
-	}
+		if(choice != 1 && choice != 2 && choice != 3) {
+			printf("please choose a valid level between 1 and 3 !\n");
+		}
+	} while(choice != 1 && choice != 2 && choice != 3);
 	switch(choice) {
-		case 49: return(10);
-		case 50: return(7);
-		case 51: return(5);
+		case 1: return(10);
+		case 2: return(7);
+		case 3: return(5);
 		default: printf("error value \n");
 			exit(1);
 	}
@@ -85,24 +78,29 @@ void end_game(int score) { // when the game is over
 }
 
 
-void verifgameover(int tab[TAILLE][TAILLE],int score){
+void verifgameover(int tab[TAILLE][TAILLE],int score){ // verification of the first line of the tab, if there is a bloc, it's game over
 	for(int i = 0; i < TAILLE;i++){
-		if(tab[0][i]!=0){
-			end_game(score);
+		if(tab[0][i]!=0){ // if there is a game over go to end_game
+			end_game(score); 
 		}
 	}
 }
 
-void choose_rotation(int* rotation, int level) {
-	char rotationchar;
+void choose_rotation(int* rotation, int level) { // alow to choose the block's rotation
 	int sc = 0; // will be use to check the scanf
 	double elapsed; // allow use to have the difference between the end and the start of the timer
 	time_t start, end; // will be the start and the end of the timer
 	time(&start); // beginning of the timer
-	if(rotationchar < 49 || rotationchar > 53) {
-		printf("please choose a number between 1 and 4\n");
-		while(rotationchar < 49 || rotationchar > 53 || sc != 1) {
-			sc = scanf("%c", &rotationchar); // test if the scanf worked
+	printf("\nchoose the rotation between 1 and 4\n");
+	sc = scanf("%d", rotation); // test if the scanf worked
+	if(sc != 1) {
+		printf("error scanf : please enter a number\n");
+		exit(1);
+	}
+	if(*rotation < 1 || *rotation > 4) {
+		while(*rotation < 1 || *rotation > 4) {
+			printf("please choose a number between 1 and 4\n");
+			sc = scanf("%d", rotation); // test if the scanf worked
 			if(sc != 1) {
 				printf("error scanf\n");
 				exit(1);
@@ -112,21 +110,25 @@ void choose_rotation(int* rotation, int level) {
 	time(&end); // end of the timer
 	elapsed = difftime(end, start); // we calculate the difference
 	if(elapsed > level) { // if the timer exceed the time limit
-		printf("you took too long sorry, the rotation will be choose randomly\n");
+		printf("you took too long sorry, the rotation will be chosen randomly\n");
 		*rotation = (rand() % 4) + 1;
-		return;
 	}
-	*rotation = (int)(rotationchar-49);
+	*rotation = *rotation - 1;
 }
 
-void choose_column(char* column, int level) {
+void choose_column(char* column, int level) { // alow to choose the block's column
 	int sc = 0; // will be use to check the scanf
 	double elapsed; // allow use to have the difference between the end and the start of the timer
 	time_t start, end; // will be the start and the end of the timer
 	time(&start); // beginning of the timer
+	sc = scanf("%c", column); // test if the scanf worked
+	if(sc != 1) {
+		printf("error scanf\n");
+		exit(1);
+	}
 	if(*column < 65 || *column > 74) {
-		printf("\nplease choose a letter between A and J\n");
 		while(*column < 65 || *column > 74) {
+			printf("\nplease choose a letter between A and J for the column\n");
 			sc = scanf("%c", column); // test if the scanf worked
 			if(sc != 1) {
 				printf("error scanf\n");
@@ -137,8 +139,8 @@ void choose_column(char* column, int level) {
 	time(&end);
 	elapsed = difftime(end, start); // we calculate the difference
 	if(elapsed > level) { // if the timer exceed the time limit
-		printf("you took too long sorry, the column will be choose randomly\n");
+		printf("you took too long sorry, the column will be chosen randomly\n");
 		*column = (rand() % 10) + 65 ;
 	}
-	*column = *column-65;
+	*column = *column-65;	
 }
