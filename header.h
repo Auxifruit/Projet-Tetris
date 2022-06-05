@@ -18,7 +18,7 @@ typedef struct {
 void init_grid(int tab[TAILLE][TAILLE]); // initialize the grid
 void show_grid(int tab[TAILLE][TAILLE]); // show the grid in the terminal
 int block(int p); // transform int in char
-int verification(int tab[TAILLE][TAILLE], int score); // chech if a line is complete, and if it's full it goes to the linedelete function and increment the score before returning it
+int verification(int tab[TAILLE][TAILLE], int score); // check if a line is complete, and if it's full it goes to the linedelete function and increment the score before returning it
 int linedelete(int tab[TAILLE][TAILLE], int n, int score); // after the verification, useful to delete the line and replaced by the line above
 void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILLE]); // place the bloc with the colisions
 void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int level); // place a block in the table
