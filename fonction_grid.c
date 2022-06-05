@@ -101,7 +101,7 @@ int block(int p) { // transform int in char
 	}
 }
 
-int verification(int tab[TAILLE][TAILLE], int score){ // chech if a line is complete, and if it's full it goes to the linedelete function and increment the score before returning it
+int verification(int tab[TAILLE][TAILLE], int score){ // check if a line is complete, and if it's full it goes to the linedelete function and increment the score before returning it
 	int count = 0; // count that will increment if there is not a 0 in a line
 	for(int i = 0; i < TAILLE; i++){ // check all line of the grid
 		for(int j = 0; j < TAILLE; j++) {
