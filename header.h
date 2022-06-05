@@ -11,7 +11,7 @@ typedef struct {
 	int ***type; // contain the tetromino's form and its orientation
 	int orientation; // orientation of the tetromino
 	int color; // color of the tetromino
-	int thickness[ROTATION];
+	int thickness[ROTATION]; // is the width of the block
 } Tetromino;
 
 // all function of fonction_grid.c 
