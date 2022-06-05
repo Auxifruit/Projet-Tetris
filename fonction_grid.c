@@ -292,7 +292,6 @@ void calcimpression(int tab[TAILLE][TAILLE], int calc[TAILLE][TAILLE]){
 }
 
 void fall(int calc[TAILLE][TAILLE]){
-	printf("lalala\n");
 	for(int i = 9; i >= 0; i--){
 		for(int j = 0; j < TAILLE; j++){
 			if(calc[i][j] != 0){
