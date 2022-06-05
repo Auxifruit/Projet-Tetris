@@ -25,7 +25,7 @@ int difficulty() { // choose the level of difficulty beetween 1 and 3 from easy 
 	if(choice < 49 || choice > 51) {
 		printf("\nplease choose a level between 1 and 3\n");
 		while(choice < 49 || choice > 51) {
-			sc = scanf("%c", &choix); // test if the scanf worked
+			sc = scanf("%c", &choice); // test if the scanf worked
 			if(sc != 1) {
 				printf("error scanf\n");
 				exit(1);
