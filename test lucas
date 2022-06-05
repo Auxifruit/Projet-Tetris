@@ -667,7 +667,7 @@ exit(1);
 
 
 
-  int score game ();
+  int score = game ();
   totalscore(SCOREBOARD , score);
   fclose(SCOREBOARD);
   return 0;
