@@ -7,7 +7,7 @@ void int_random(int* random) { // return a random number to choose a tetromino
 
 void rand_tetro(Tetromino *tetro) {
 	int random;
-	for(int i=0; i<4;i++){
+	for(int i=0; i<4;i++){ // initialization of the tetromino to 0
 		for(int j=0;j<4;j++){
 			for(int k=0;k<4;k++){
 				tetro->type[i][j][k]=0;
@@ -16,7 +16,7 @@ void rand_tetro(Tetromino *tetro) {
 	}
 	int_random(&random); // pick a random number for a random piece
 	if(random == 0) { // 0 block
-			tetro->color = 33;
+			tetro->color = 33; // set the color to yellow
 		
 			tetro->thickness[0]= 2;
 			tetro->thickness[1]= 2;
@@ -49,7 +49,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 1) { // I block
-			tetro->color = 36;
+			tetro->color = 36; // set the color to cyan
 		
 			tetro->thickness[0]=1;
 			tetro->thickness[1]=4;
@@ -83,7 +83,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 2) { // L block
-			tetro->color = 37;
+			tetro->color = 37; // set the color to white
 		
 			tetro->thickness[0]=2;
 			tetro->thickness[1]=3;
@@ -116,7 +116,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 3) { // J block
-			tetro->color = 34;
+			tetro->color = 34; // set the color to blue
 		
 			tetro->thickness[0]=2;
 			tetro->thickness[1]=3;
@@ -150,7 +150,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 4) { // T block
-			tetro->color = 35;
+			tetro->color = 35; // set the color to magenta
 		
 			tetro->thickness[0]=3;
 			tetro->thickness[1]=2;
@@ -184,7 +184,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 5) { // Z block
-			tetro->color = 31;
+			tetro->color = 31; // set the color to red
 
 			tetro->thickness[0]=3;
 			tetro->thickness[1]=2;
@@ -218,7 +218,7 @@ void rand_tetro(Tetromino *tetro) {
 // ------------------------------------------------------------------------------
 
 	else if(random == 6) {// S block
-			tetro->color = 32;
+			tetro->color = 32; // set the color to green
 
 			tetro->thickness[0]=3;
 			tetro->thickness[1]=2;
@@ -250,24 +250,24 @@ void rand_tetro(Tetromino *tetro) {
 	}
 
 	else {
-			printf("block error \n");
+			printf("block error \n"); // if the value of int random(); is not valid
 			exit(1);
 	}
 }
 
-void show_tetro(Tetromino *tetro) { // show the tetrimoni and its rotation
+void show_tetro(Tetromino *tetro) { // show the tetromino with its color and its rotation
 	printf("This is your block with its orientation:\n");
 	for(int l = 0; l < DIMENSION; l++) {
 		for(int m = 0; m < DIMENSION; m++) {
 			for(int n = 0; n < DIMENSION; n++) {
-					printf("\033[%dm%c", tetro->color, block(tetro->type[m][l][n])); // show the first row of each tetromino before going to the next lign
+					printf("\033[%dm%c", tetro->color, block(tetro->type[m][l][n])); // show each line for all the rotation
 			}
 			printf("	"); // allow to separate each rotation
 		}
 	printf("\033[37m\n"); // turn back the color to white
 	}
 	for(int i = 1; i < DIMENSION + 1; i++){ // allow to print the number of each rotation to 1 to 4
-		printf("%d.	",i);
+		printf("%d.	",i); // allow to separate each number
 	}
 	printf("\n");
 }
