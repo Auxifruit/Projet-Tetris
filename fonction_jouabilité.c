@@ -1,9 +1,5 @@
 #include "header.h"
 
-void input(char *c) { // input a char
-	while (((*c=getchar()) == '\n'));
-}
-
 void logo() { // printf the classic tetris logo
 printf("\033[33m _______  ____  _______  _____  _  ______\n");
 printf("|__   __||  __/|__   __|| __  /|_||  ____/\n");
