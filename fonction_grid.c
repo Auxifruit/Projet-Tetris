@@ -18,62 +18,62 @@ void show_grid(int tab[TAILLE][TAILLE]) { // show the grid, used to update the g
 			if(b == 0) { // allow to print the first case of each line
 				switch(tab[a][b]){
 					case 0:
-						printf("\n|\033[37m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[37m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 1:
-						printf("\n|\033[33m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[33m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 2:
-						printf("\n|\033[36m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[36m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 3:
-						printf("\n|\033[37m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[37m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 4:
-						printf("\n|\033[34m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[34m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 5:
-						printf("\n|\033[35m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[35m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 6:
-						printf("\n|\033[31m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[31m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					case 7:
-						printf("\n|\033[32m%c\033[37m|", block(tab[a][b]));
+						printf("\n|\033[32m%c\033[37m|", block(tab[a][b])); // printf the first case with its own color
 						break;
 					default:
-						printf("\nErreur d'affichage\n");
+						printf("\nvalue error to print\n"); // error if we have no valid value
 						exit(0);
 				}
 			}
-			else{ // printf the rest of the lign
+			else{ // printf the rest of the line
 				switch(tab[a][b]){
 					case 0:
-						printf("\033[37m%c\033[37m|", block(tab[a][b]));
+						printf("\033[37m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 1:
-						printf("\033[33m%c\033[37m|", block(tab[a][b]));
+						printf("\033[33m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 2:
-						printf("\033[36m%c\033[37m|", block(tab[a][b]));
+						printf("\033[36m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 3:
-						printf("\033[37m%c\033[37m|", block(tab[a][b]));
+						printf("\033[37m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 4:
-						printf("\033[34m%c\033[37m|", block(tab[a][b]));
+						printf("\033[34m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 5:
-						printf("\033[35m%c\033[37m|", block(tab[a][b]));
+						printf("\033[35m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 6:
-						printf("\033[31m%c\033[37m|", block(tab[a][b]));
+						printf("\033[31m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					case 7:
-						printf("\033[32m%c\033[37m|", block(tab[a][b]));
+						printf("\033[32m%c\033[37m|", block(tab[a][b])); // printf the rest of the line case with its own color
 						break;
 					default:
-						printf("\nErreur d'affichage\n");
+						printf("\nErreur d'affichage\n"); // error if we have no valid value
 						exit(0);
 				}
 			}
@@ -101,43 +101,42 @@ int block(int p) { // transform int in char
 	}
 }
 
-int verification(int tab[TAILLE][TAILLE], int score){ //return a table in which there are the numbers of the full lines and if no line is full, fill it with 20
-	int count = 0;
-	for(int i = 0; i < TAILLE; i++){
+int verification(int tab[TAILLE][TAILLE], int score){ // chech if a line is complete, and if it's full it goes to the linedelete function
+	int count = 0; // count that will increment if there is not a 0 in a line
+	for(int i = 0; i < TAILLE; i++){ // check all line of the grid
 		for(int j = 0; j < TAILLE; j++) {
-			if(tab[i][j] != 0) {
-				count++;
-				if(count == 10) {
-					 score = linedelete(tab, i, score);
+			if(tab[i][j] != 0) { 
+				count++; // we don't have a 0 so this means that the case is occupied so we increment the value of count
+				if(count == 10) { // it means that the line is full so we delete it
+					 score = linedelete(tab, i, score); // delete the line
 				}
 			}	
 		}
-	count = 0;
+	count = 0; // reset the counter to 0 because we go to an other line
 	}
-	printf("\nyour score = %d", score);
+	printf("\nyour score = %d", score); // print the score to keep an eye on it
 	return score;
 }
 
-int linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verification, useful to delete the line and replace by the line on the bottom
-	for(int j = 0; j < TAILLE; j++){ 	// delete the line n with all the 1's to a line with 0's
+int linedelete(int tab[TAILLE][TAILLE], int n, int score){ // after the verification, useful to delete the line and replaced by the line above
+	for(int j = 0; j < TAILLE; j++){ // delete the line n with all the 1's to a line with 0's
 		tab[n][j] = 0;
 	}
-	printf("erreur ici \n");
-	for(int k = n; k > 0; k--) {	
+	for(int k = n; k > 0; k--) { // replace the line with the line above
 		for(int l = 0; l < TAILLE; l++) {
 			tab[k][l] = tab[k - 1][l];
 		} 												
 	}
-	score = score + 100;
+	score = score + 100; // increment the score by 100
 	return score;
 }
 
 void place(int tab[TAILLE][TAILLE], Tetromino* tetro, int level) {// place a block in the grid
-	char column;
-	int rotation;
-	choose_rotation(&rotation, level);
-	choose_column(&column, level);
-	placement(tetro,rotation,(int)column,tab);
+	char column; // will countain the column of the tetromino
+	int rotation; // will countain the column of the tetromino
+	choose_rotation(&rotation, level); // allow us to choose the rotation
+	choose_column(&column, level); // allow us to choose the rotation
+	placement(tetro,rotation,(int)column,tab); // place the tetromino in the grid
 }
 
 void placement(Tetromino *tetro, int rotation, int column, int tab[TAILLE][TAILLE]){
