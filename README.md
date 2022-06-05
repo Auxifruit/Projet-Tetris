@@ -27,7 +27,7 @@ Pour lancer le programme:
 ```
 ### JOUABILITÉ
 
-Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1 et 3. Le niveau déterminera le temps que vous aurez pour jouer, 7 secondes pour le niveau 1, 5 secondes pour le niveau 2 et 3 secondes pour le niveau 3. Si vous dépassez le temps limite, l'orientation du tétromino puis la colonne sera choisie aléatoirement. Ce choix est fait grâce à la fonction suivante:
+Au lancement du jeu, vous devrez choisir la difficulté du jeu entre le niveau 1 et 3. Le niveau déterminera le temps que vous aurez pour jouer, 10 secondes pour le niveau 1, 7 secondes pour le niveau 2 et 5 secondes pour le niveau 3. Si vous dépassez le temps limite, l'orientation du tétromino puis la colonne sera choisie aléatoirement. Ce choix est fait grâce à la fonction suivante:
 ```c
   int difficulty();
 ```
