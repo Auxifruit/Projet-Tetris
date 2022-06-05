@@ -99,7 +99,7 @@ void choose_rotation(int* rotation, int level) {
 	double elapsed; // allow use to have the difference between the end and the start of the timer
 	time_t start, end; // will be the start and the end of the timer
 	time(&start); // beginning of the timer
-	if(rotationchar < 49 || rotationchar > 53 || sc != 1) {
+	if(rotationchar < 49 || rotationchar > 53) {
 		printf("please choose a number between 1 and 4\n");
 		while(rotationchar < 49 || rotationchar > 53 || sc != 1) {
 			sc = scanf("%c", &rotationchar); // test if the scanf worked
@@ -125,11 +125,6 @@ void choose_column(char* column, int level) {
 	double elapsed; // allow use to have the difference between the end and the start of the timer
 	time_t start, end; // will be the start and the end of the timer
 	time(&start); // beginning of the timer
-	sc = scanf("%c", column); // test if the scanf worked
-	if(sc != 1) {
-		printf("error scanf\n");
-		exit(1);
-	}
 	if(*column < 65 || *column > 74) {
 		printf("\nplease choose a letter between A and J\n");
 		while(*column < 65 || *column > 74) {
@@ -148,5 +143,4 @@ void choose_column(char* column, int level) {
 		sleep(1);
 	}
 	*column = *column-65;
-	
 }
