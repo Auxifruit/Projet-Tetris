@@ -114,7 +114,7 @@ void choose_rotation(int* rotation, int level) {
 	if(elapsed > level) { // if the timer exceed the time limit
 		printf("you took too long sorry, the rotation will be choose randomly\n");
 		*rotation = (rand() % 4) + 1;
-		sleep(3);
+		sleep(1);
 	}
 	*rotation = *rotation - 1;
 }
@@ -144,7 +144,7 @@ void choose_column(char* column, int level) {
 	if(elapsed > level) { // if the timer exceed the time limit
 		printf("you took too long sorry, the column will be choose randomly\n");
 		*column = (rand() % 10) + 65 ;
-		sleep(3);
+		sleep(1);
 	}
 	*column = *column-65;
 	
