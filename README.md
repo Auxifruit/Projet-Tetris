@@ -60,4 +60,4 @@ Exemple ci-dessous:
 
 ## CRÉATEURS
 
-Binôme composé de Tom ALLAGUILLEMETTE(aka Moutsss) et Guillaume BARRÉ(aka Auxifruit) en PRÉING 1 GROUPE 7
+Binôme composé de Tom ALLAGUILLEMETTE(aka lui) et Guillaume BARRÉ(aka Auxifruit) en PRÉING 1 GROUPE 7
